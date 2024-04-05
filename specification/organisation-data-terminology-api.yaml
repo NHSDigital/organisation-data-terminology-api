@@ -2,7 +2,7 @@
 # for organisation-data-service-fhir-api owned by NHS Digital (https://digital.nhs.uk/)
 openapi: '3.0.0'
 info:
-  title: 'organisation-data-service-fhir R4-api'
+  title: 'organisation-data-terminology-api'
   version: '0.1'
   contact:
     name: 'ODS FHIR API Support'
@@ -2285,7 +2285,7 @@ paths:
       description: |
         ## Overview 
 
-        Use this endpoint to access a range of information contained in CodeSystems to meet your needs. We have a range of different CodeSystems that contain regularly changing data such as organisations, practitioners and relationships plus more traditional reference based CodeSystems.
+        Use this endpoint to access a range of information contained in CodeSystems to meet your needs. We have CodeSystems that contain regularly changing data such as organisations, practitioners and relationships plus more traditional reference based CodeSystems.
         
         CodeSystem names include the date when they were last updated i.e. `ods-organization-code-2024-03-07` so when searching for individual concepts (records within the CodeSystem) it is necessary to perform a search using a `$lookup` providing the system and code required in addition to any properties you wish to return.
         
@@ -2293,7 +2293,7 @@ paths:
         
         `/CodeSystem/$lookup?system=https://fhir.nhs.uk/Id/ods-organization-code&code=G81086&property=*`
         
-        
+        ### Summary information
         A summary of each codeSystem can be returned to see which properties are available and which search operations are supported, without attempting to return the data. organisation, role, relationship, postcode and geography information will all generate errors as they are too large to be returned.
         
         Performing a search will default to summary mode and list each instance of the CodeSystem currently stored on the Server. it is expected that we will retain 2-3 versions at any given point. 
@@ -2306,6 +2306,11 @@ paths:
           For example:
         `/CodeSystem?system=https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-role&_summary=false`
         
+        ## Code Validation
+        Using the $validate operation you can check whether a code is present within any given ValueSet and you can also provide additional properties to validate their values.
+            
+        For example:
+          `CodeSystem/$validate-code?url=https://fhir.nhs.uk/Id/ods-organization-code&code=RH8&status=active`
         
         ## Organisation Data
         ### ods-organization-code 
@@ -3176,20 +3181,16 @@ paths:
   
   /ValueSet/:
     post:
-  
-          summary: Perform a ValueSet expansion
-    
-          operationId: search-ods-organization-code
-          description: |
-            ## Overview
-            To retrieve a subset of records from an individual CodeSystem, you will need to perform a 'POST' operation, in which you will provide the details of the CodeSystem you are searching, along with any filters to be applied and properties you wish to include in the results.
-            
-            When you make a 'POST' operation, you perform an expansion on a ValueSet and provide a requestBody. The endpoint will return a sucessful (200) response code along with the search results, which may be an empty array if no records match your criteria. or an unsuccesful (4xx/5xx) response.
+      summary: Perform a ValueSet expansion
+      operationId: search-ods-organization-code
+      description: |
+        ## Overview
+        To retrieve a subset of records from an individual CodeSystem, you will need to perform a 'POST' operation, in which you will provide the details of the CodeSystem you are searching, along with any filters to be applied and properties you wish to include in the results.
+        
+        When you make a 'POST' operation, you perform an expansion on a ValueSet and provide a requestBody. The endpoint will return a successful (200) response code along with the search results, which may be an empty array if no records match your criteria. or an unsuccesful (4xx/5xx) response.
             
          
-      
-
-          requestBody:
+      requestBody:
             content:
               application/fhir+json:
                 example:
@@ -3236,16 +3237,15 @@ paths:
     ]
 }
         
-      
-        
-          responses:
-            '200':
-              
-              description:  a valid 
-              content:
-                application/fhir+json:
-                  example:
-                    {
+
+      responses:
+        '200':
+          
+          description:  a valid 
+          content:
+            application/fhir+json:
+              example:
+                {
       "resourceType": "ValueSet",
     "expansion": {
         "identifier": "urn:uuid:7799a8c4-2d2a-4d74-b647-2d50aad98904",
@@ -3357,14 +3357,19 @@ paths:
     }
 }    
 
-            '4XX':
-              description: |
-                An error occurred as follows:
+        '4XX':
+            description: |
+              An error occurred as follows:
+              
+                  | HTTP Code   | issue.severity | issue.code    | issue.details.code  | issue.details.display |
+                  |------------ |----------------|---------------|---------------------|---------------------  |
+                  |400          |error           |invalid        |HAPI-1940            |Invalid Date/Time/Quantity format |
+                  |400          |error           |invalid        |HAPI-0524            |Unknown Search Parameter|
+                  |404          |error           |invalid        |HAPI-2001             |Organization not found  |
+                  |405          |error           |method not allowed|HAPI-0427         |Method Not Allowed      |
+                  |422          |unprocessable   |too-costly     |Too many records requested (Use _count and _offset)|Invalid parameter  |
+                  |422          |unprocessable   |processing |No declared filter on Codesystem |An input field has an invalid value for its type  |
                 
-                | HTTP Code   | issue.severity  | issue.code    | issue.details.code        | issue.details.display |
-                |------------ |---------------- |-----------    |-------------------------- |---------------------- |
-                | 404         | error           | not-found     | NO_RECORD_FOUND           | No record found |
-                  
             
   /metadata:
     get:

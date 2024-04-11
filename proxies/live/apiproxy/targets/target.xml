@@ -1,25 +1,4 @@
 <TargetEndpoint name="organisation-data-terminology-api-target">
-  <PreFlow>
-    <Request>
-      <Step>
-        <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
-      </Step>
-      <Step>
-        <Name>FlowCallout.ApplyRateLimiting</Name>
-      </Step>
-    </Request>
-  </PreFlow>
-  <FaultRules>
-    <FaultRule name="access_token_expired">
-      <Step>
-        <Name>ExtractVariables.OAuthErrorFaultString</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-      </Step>
-      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule>
-  </FaultRules>
   <HTTPTargetConnection>
     <SSLInfo>
       <Enabled>true</Enabled>

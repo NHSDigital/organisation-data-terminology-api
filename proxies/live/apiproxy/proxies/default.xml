@@ -4,6 +4,9 @@
       <Step>
         <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
       </Step>
+      <Step>
+        <Name>AssignMessage.RemoveAuthHeaders</Name>
+      </Step>
     </Request>
   </PreFlow>
 
@@ -46,6 +49,26 @@
       </Condition>
     </Flow>
   </Flows>
+  <PostFlow>
+    <Request>
+      <Step>
+        <Name>LookupCache.GetAccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false</Condition>
+        <Name>ServiceCallout.GetAccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false and accessTokenResponse.content != null</Condition>
+        <Name>ExtractVariables.AccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false</Condition>
+        <Name>PopulateCache.AccessToken</Name>
+      </Step>
+    </Request>
+  </PostFlow>
+  
   <PostClientFlow name="PostClientFlow">
     <Response>
       <Step>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ServiceCallout async="false" continueOnError="false" enabled="true" name="ServiceCallout.GetAccessToken">
+    <DisplayName>ServiceCallout.GetAccessToken</DisplayName>
+    <Properties/>
+    <Request clearPayload="true" variable="accessTokenRequest">
+        <Set>
+            <FormParams>
+                <FormParam name="grant_type">client_credentials</FormParam>
+                <FormParam name="client_id">{private.sample_client_id}</FormParam>
+                <FormParam name="client_secret">{private.sample_client_secret}</FormParam>
+            </FormParams>
+            <Headers>
+                <Header name="Content-Type">application/x-www-form-urlencoded</Header>
+            </Headers>
+            <Verb>POST</Verb>
+        </Set>
+        <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    </Request>
+    <Response>accessTokenResponse</Response>
+    <HTTPTargetConnection>
+        <Properties/>
+        <URL>https://{private.sample_tokenUrl}</URL>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+            <ClientAuthEnabled>false</ClientAuthEnabled>
+            <IgnoreValidationErrors>true</IgnoreValidationErrors>
+        </SSLInfo>
+    </HTTPTargetConnection>
+</ServiceCallout>

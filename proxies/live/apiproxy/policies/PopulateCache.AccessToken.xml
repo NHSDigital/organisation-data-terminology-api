@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <PopulateCache async="false" continueOnError="false" enabled="true" name="PopulateCache.AccessToken">
     <DisplayName>PopulateCache.AccessToken</DisplayName>
-    <CacheResource>OrganisationAPIAccessToken</CacheResource>
+    <CacheResource>organisation-data-terminology-api-cache</CacheResource>
     <Source>access_token</Source>
     <Scope>Exclusive</Scope>
     <CacheKey>

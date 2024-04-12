@@ -98,6 +98,17 @@
   <RouteRule name="organisation-data-terminology-api-target">
     <TargetEndpoint>organisation-data-terminology-api-target</TargetEndpoint>
   </RouteRule>
+  <FaultRules>
+    <FaultRule name="access_token_expired">
+      <Step>
+        <Name>ExtractVariables.OAuthErrorFaultString</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+      </Step>
+      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+    </FaultRule>
+  </FaultRules>
   <DefaultFaultRule>
     <Step>
       <Name>AssignMessage.Errors.CatchAllMessage</Name>

@@ -6,17 +6,7 @@
       </Step>
     </Request>
   </PreFlow>
-  <FaultRules>
-    <FaultRule name="access_token_expired">
-      <Step>
-        <Name>ExtractVariables.OAuthErrorFaultString</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
-      </Step>
-      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
-    </FaultRule>
-  </FaultRules>
+
   <!--
     To point to a named target server as this is how it SHOULD be implemented:
     For example:

@@ -2,10 +2,6 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddAuthHeaderToken">
     <DisplayName>AssignMessage.AddAuthHeaderToken</DisplayName>
     <Properties/>
-    <AssignVariable>
-        <Name>target.url</Name>
-        <Template>https://{private.sample_targetUrl}</Template>
-    </AssignVariable>
     <Set>
         <Headers>
             <Header name="Authorization">Bearer {access_token}</Header>

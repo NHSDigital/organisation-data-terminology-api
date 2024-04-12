@@ -6,8 +6,8 @@
         <Set>
             <FormParams>
                 <FormParam name="grant_type">client_credentials</FormParam>
-                <FormParam name="client_id">{private.sample_client_id}</FormParam>
-                <FormParam name="client_secret">{private.sample_client_secret}</FormParam>
+                <FormParam name="client_id">apim-client</FormParam>
+                <FormParam name="client_secret">{private.environment_kvm_data}</FormParam>
             </FormParams>
             <Headers>
                 <Header name="Content-Type">application/x-www-form-urlencoded</Header>
@@ -19,7 +19,7 @@
     <Response>accessTokenResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://{private.sample_tokenUrl}</URL>
+        <URL>https://jenkins.ods.dc4h.link/authorisation/auth/realms/terminology/protocol/openid-connect/token</URL>
         <SSLInfo>
             <Enabled>true</Enabled>
             <ClientAuthEnabled>false</ClientAuthEnabled>

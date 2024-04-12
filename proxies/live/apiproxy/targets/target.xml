@@ -2,12 +2,6 @@
   <PreFlow>
     <Request>
       <Step>
-        <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
-      </Step>
-      <Step>
-        <Name>FlowCallout.ApplyRateLimiting</Name>
-      </Step>
-      <Step>
         <Name>AssignMessage.AddAuthHeaderToken</Name>
       </Step>
     </Request>

@@ -5,6 +5,12 @@
         <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
       </Step>
       <Step>
+        <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
+      </Step>
+      <Step>
+        <Name>FlowCallout.ApplyRateLimiting</Name>
+      </Step>
+      <Step>
         <Name>AssignMessage.RemoveAuthHeaders</Name>
       </Step>
     </Request>

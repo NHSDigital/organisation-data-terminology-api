@@ -66,6 +66,3 @@ def test_wait_for_status(nhsd_apim_proxy_url, status_endpoint_auth_headers):
         pytest.fail("version not found")
 
     assert deployed_commitId == getenv('SOURCE_COMMIT_ID')
-
-
-

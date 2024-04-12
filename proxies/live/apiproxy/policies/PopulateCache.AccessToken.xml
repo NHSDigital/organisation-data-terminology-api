@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="PopulateCache.AccessToken">
+    <DisplayName>PopulateCache.AccessToken</DisplayName>
+    <CacheResource>OrganisationAPIAccessToken</CacheResource>
+    <Source>access_token</Source>
+    <Scope>Exclusive</Scope>
+    <CacheKey>
+        <KeyFragment>access_token</KeyFragment>
+    </CacheKey>
+    <ExpirySettings>
+        <TimeoutInSeconds ref="private.sampleTimeOut">12345</TimeoutInSec>
+    </ExpirySettings>
+</PopulateCache>

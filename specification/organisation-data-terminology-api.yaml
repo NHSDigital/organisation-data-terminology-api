@@ -2,7 +2,7 @@
 # for organisation-data-service-fhir-api owned by NHS Digital (https://digital.nhs.uk/)
 openapi: '3.0.0'
 info:
-  title: 'organisation-data-service-fhir R4-api'
+  title: 'organisation-data-terminology-api'
   version: '0.1'
   contact:
     name: 'ODS FHIR API Support'
@@ -12,9 +12,9 @@ info:
   
  
     ## Overview
-    Use this API to access a dataset of health and social care organisations, such as trusts or GP practices, using the [Organisation Data Service (ODS)](https://digital.nhs.uk/services/organisation-data-service). 
+    Use this API to access a dataset of health and social care organisations and sites, such as trusts or GP practices, using the [Organisation Data Service (ODS)](https://digital.nhs.uk/services/organisation-data-service). 
     
-    The FHIR API contains the majority of ODS Content, including Organisations, practitioners and geographic information. It contains all the content found within the [ODS ORD API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) and the [ODS STU3 API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir)
+    This [FHIR](https://hl7.org/fhir/R4/organization.html) API contains the majority of ODS Content, including Organisations, practitioners and geographic information. It contains all the content found within the [ODS ORD API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) and the [ODS STU3 API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir)
     
     ODS holds information for many different types of organisation related to health and social care – mostly in England but also other countries depending on the type of Organisation. For the full scope of data coverage of the ODS APIs, see [Organisation Data Service - data coverage](https://digital.nhs.uk/services/organisation-data-service/ods-data-coverage). 
 
@@ -22,9 +22,10 @@ info:
 
     Using this API, you can:
     
-      - search for an organisation to find its ODS code 
+      - search for an organisation or site to find its ODS code 
       - get organisation details for a given ODS code
-      - get details of related organisations
+      - get details of related organisations and sites
+      - get details of records changed in a given date range
       - search for a practitioner to find their ODS code 
       - get practitioner details for a given ODS code 
       - get geographic boundaries for a postcode 
@@ -41,17 +42,17 @@ info:
     
     To access the Organisation attributes which are not included in the Organization resource use the ods-organization-code CodeSystem. The CodeSystem resource returns the following additional information:
 
-      - organisation – Assigning Authority 
-      - related entities, the current related entity of any supported relationships 
+      - organisation -  Assigning Authority 
+      - related entities -the current related entity of any supported relationships 
       - succession - any predecessors and/or successors and a flag to indicate the successor has also been succeeded 
       - geographic - the appropriate mapping from the postcode dataset including Local Authority, Integrated Care Board or Lower Super Output Area (LSOA) 
 
     ### Practitioner Data
-    ODS publishes a limited set of prescribers held by the Business Services Authority, which includes General Practitioners and Nurse Prescribers, alongside Hospital and Dental Consultants provided by the workforce census returns.
+    ODS publishes a limited set of prescribers held by the NHS Business Services Authority, which includes General Practitioners and Nurse Prescribers, alongside Hospital and Dental Consultants provided by the NHS England Workforce and Facilities team as an extract from the Electronic Staff Record system.
     
-    These codes have not been made available within the Pracitioner Resource as it is felt thet they do not accurately represent an indindiual, but rather reflect their prescribing activities.
+    These codes have not been made available within the Practitioner Resource as it is felt that they do not accurately represent an individual, but rather reflect their prescribing activities.
     
-    To access the Practitioner data you will need to use the practitioner CodeSystem in conjunction with the practitioner-relationship-instance CodeSystem which contians the relationship between a practitioner and the organisation at which they work. 
+    To access the Practitioner data you will need to use the practitioner CodeSystem in conjunction with the practitioner-relationship-instance CodeSystem which contains the relationship between a practitioner and the organisation at which they work. 
     
     ### Postcodes and geographic boundaries available
     
@@ -63,15 +64,15 @@ info:
 
     - practitioner - includes details about related organisation (where a practitioner is based/works) and type of practitioner
     - postcode - contains various geographic values/boundaries for a postcode including which Lower Super Output Area, Parliamentary Constituency, Local Authority and Integrated Care Board boundary a postcode falls within
-    - organization-relationship-instance – contains historic and current relationships
-    - organization-role-instance – contains historic and current role instances 
-    - practitioner-role – contains the role a practitioner performs (currently limited to prescriber types/roles and consultants)
-    - practitioner-relationship-instance – contains the associations between Prescribers (GPs) and GP Practices only 
-    - ODSOrganisationRole – reference Data for Primary and Non Primary Roles (Role ID, Role Name, and Primary/Non Primary indicator)
-    - ODSRelationship – reference data for Relationships (Relationship Type ID and Relationship Name)  
-    - ODSRecordClass – reference data for record classes ie org or site 
-    - ODSRecordUseType – reference data for the type of use – Full for current records, refOnly for minimal records included for referential integrity
-    - geography-name – reference data for ONS identifiers used within the Postcode CodeSystem 
+    - organization-relationship-instance - contains historic and current relationships
+    - organization-role-instance - contains historic and current role instances 
+    - practitioner-role - contains the role a practitioner performs (currently limited to prescriber types/roles and consultants)
+    - practitioner-relationship-instance - contains the associations between Prescribers (GPs) and GP Practices only 
+    - ODSOrganisationRole - reference Data for Primary and Non Primary Roles (Role ID, Role Name, and Primary/Non Primary indicator)
+    - ODSRelationship - reference data for Relationships (Relationship Type ID and Relationship Name)  
+    - ODSRecordClass - reference data for record classes for example organisation or site 
+    - ODSRecordUseType - reference data for the type of use – Full for current records, refOnly for minimal records included for referential integrity
+    - geography-name - reference data for ONS identifiers used within the Postcode CodeSystem 
 
 
     <section class="nhsd-m-emphasis-box nhsd-m-emphasis-box--important nhsd-!t-margin-bottom-6" aria-label="Important Information">
@@ -96,7 +97,7 @@ info:
     It can be used free of charge by public sector organisations in England, Scotland and Wales, including the NHS. This includes use by software developers building software for the public sector.
     
     ## Related APIs
-    The following APIs also gives access to the Organisation Data Service:
+    The following APIs also give access to the Organisation Data Service:
     - [ODS Organisation Reference Data (ORD) API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) - a richer version conforming to DCB000090 Standard, soon to be deprecated.
     - [ODS Organisation Reference Data (FHIR - STU3) API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir) - STU3 version contains a minimal organization record, soon to be deprecated.
     
@@ -149,7 +150,7 @@ info:
     | Environments                | Base URLs                                                              |
     | -----------------           | ---------------------------------------------------------------------- |
     | User acceptance test (UAT)  |TBC                      |
-    | Production                  |TBC                      |
+    | Production                  |`https:hscorganisationdata.nhs.uk`          |
     
     For example:
     `TBC/fhir/Organization/RJY`
@@ -172,7 +173,7 @@ info:
 servers:
   - url: 'https://beta.ods.dc4h.link/fhir/'
     description: User acceptance test (UAT) environment.
-  - url: 'https://jenkins.ods.dc4h.link/fhir/'
+  - url: ''
     description: Production environment.   
     
 paths:
@@ -185,7 +186,7 @@ paths:
         ## Overview
         Use this endpoint to search for organisations or sites. Site codes which are supported for certain organisations can also be accessed here, there is no separate endpoint for sites. 
         
-        A FHIR Organization resource will be provided for each search result.
+        A FHIR Organization resource will be provided for each search result. Refer to our [Implementation Guidance](https://simplifier.net/guide/organisation-data-services/Home/FHIR-Assets/Profiles#UKCore-Organization) pages for profiles and other FHIR assets.
         
         You can search for information about an organisation using one or more of their: 
 
@@ -491,7 +492,10 @@ paths:
              
         - in: query
           name: _count
-          description: Number of results to return.
+          description: |
+            Number of results to return. any search which generates more than 50,000 results will generate an error. we recomend you use a limit 1000 of  and use _offset to page through the data, until you have collected all results 
+            
+            By default the first 20 records will be returned
           required: false
           schema:
             type: string
@@ -1158,6 +1162,8 @@ paths:
         ## Overview
         Use this endpoint to search for relationship records. Most commonly you would use this endpoint to get all the relationships for a given organisation, based on its ODS code. 
         
+        A FHIR OrganizationAffiliation Resource will be returned when a valid id is provided. Refer to our [Implementation Guidance](https://simplifier.net/guide/organisation-data-services/Home/FHIR-Assets/Profiles#UKCore-OrganizationAffiliation) pages for profiles and other FHIR assets.
+        
         For relationships, this API returns the following details: 
 
           * related organisation ODS code 
@@ -1215,7 +1221,10 @@ paths:
             example: 'true'
         - in: query
           name: _count
-          description: Number of results to return. 
+          description: |
+            Number of results to return. any search which generates more than 50,000 results will generate an error. we recomend you use a limit 1000 of  and use _offset to page through the data, until you have collected all results 
+            
+            By default the first 20 records will be returned 
           required: false
           schema:
             type: string
@@ -1602,7 +1611,9 @@ paths:
       operationId: get-single-organization
       description: |
         ## Overview
-        Use this endpoint to get details for a single organisation based on its ODS code. Site codes which are supported for certain organisations can also be accessed here, there is not a separate endpoint for sites. A FHIR Organization resource will be provided when a valid id has been provided. 
+        Use this endpoint to get details for a single organisation based on its ODS code. Site codes which are supported for certain organisations can also be accessed here, there is not a separate endpoint for sites. 
+        
+        A FHIR Organization resource will be provided when a valid id has been provided. Refer to our [Implementation Guidance](https://simplifier.net/guide/organisation-data-services/Home/FHIR-Assets/Profiles#UKCore-Organization) pages for profiles and other FHIR assets.
         
         
         ## What is included    
@@ -1961,7 +1972,7 @@ paths:
         ## Overview
         Use this endpoint to a retrieve a single relationship record based on its unique identifier. This record describes a relationship between a pair of organisations. The types of relationships which an organisation may have will vary depending on the primary role of the organisation. In some case there may be multiple relationships between the same two organisations, each having a different relationship type. 
 
-        A FHIR OrganizationAffiliation Resource will be returned when a valid id is provided. 
+        A FHIR OrganizationAffiliation Resource will be returned when a valid id is provided. Refer to our [Implementation Guidance](https://simplifier.net/guide/organisation-data-services/Home/FHIR-Assets/Profiles#UKCore-OrganizationAffiliation) pages for profiles and other FHIR assets.
         
       parameters:
         - in: path
@@ -2157,7 +2168,7 @@ paths:
     ]
 }
 
-  /List{id}:
+  /List/{id}:
     get:
       summary: Get deletion notices
       
@@ -2173,7 +2184,9 @@ paths:
           * Organization-succession-deletion
           
           #### Organization-deletion
-          From time to time it is posible that we create or receive orgnisations which are created in error and removed from the source data. when this occurs there is no updates to the record, it is simply no longer available. to inform users when Organisations have been deleted, we have used the List resource to provide the ODS Code of the records which have been deleted so that you may removed them from any local copies you may be maintaining.
+          From time to time it is possible that we create or receive organisations which are created in error and removed from the source data. When this occurs there is no update to the record, it is simply no longer available. 
+          
+          To inform you when Organisations have been deleted, we have used the List resource to provide the ODS Code of the records which have been deleted so that you may remove them from any local copies you may be maintaining.
           
           #### OrganizationAffilliation-deletion
           in the unlikely event that a relationship must be deleted rather then given an end date, the RelationshipID will be provided in this List resource. 
@@ -2285,7 +2298,7 @@ paths:
       description: |
         ## Overview 
 
-        Use this endpoint to access a range of information contained in CodeSystems to meet your needs. We have a range of different CodeSystems that contain regularly changing data such as organisations, practitioners and relationships plus more traditional reference based CodeSystems.
+        Use this endpoint to access a range of information contained in CodeSystems to meet your needs. We have CodeSystems that contain regularly changing data such as organisations, practitioners and relationships plus more traditional reference based CodeSystems.
         
         CodeSystem names include the date when they were last updated i.e. `ods-organization-code-2024-03-07` so when searching for individual concepts (records within the CodeSystem) it is necessary to perform a search using a `$lookup` providing the system and code required in addition to any properties you wish to return.
         
@@ -2293,19 +2306,24 @@ paths:
         
         `/CodeSystem/$lookup?system=https://fhir.nhs.uk/Id/ods-organization-code&code=G81086&property=*`
         
+        ### Summary information
+        You can return A summary of each codeSystem to see which properties are available and which search operations are supported, without attempting to return the data. Organisation, role, relationship, postcode and geography information will all generate errors as they are too large to be returned.
         
-        A summary of each codeSystem can be returned to see which properties are available and which search operations are supported, without attempting to return the data. organisation, role, relationship, postcode and geography information will all generate errors as they are too large to be returned.
-        
-        Performing a search will default to summary mode and list each instance of the CodeSystem currently stored on the Server. it is expected that we will retain 2-3 versions at any given point. 
+        When you perform a search, unless you specify otherwise, we will provide a result in summary mode and list each instance of the CodeSystem currently stored on the Server. it is expected that we will retain 2-3 versions at any given point. 
         
         For example:
         `/CodeSystem?url=https://fhir.nhs.uk/Id/ods-organization-code`
         
-        The smaller reference based CodeSystems these can be retrieved in full using `_summary=false` which will return all versions stored on the server in full.
+        The smaller reference based CodeSystems  can be returned in full using `_summary=false` which will return all versions stored on the server in full.
         
           For example:
         `/CodeSystem?system=https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-role&_summary=false`
         
+        ## Code Validation
+        Using the $validate operation you can check whether a code is present within any given ValueSet and you can also provide additional properties to validate their values.
+            
+        For example:
+          `CodeSystem/$validate-code?url=https://fhir.nhs.uk/Id/ods-organization-code&code=RH8&status=active`
         
         ## Organisation Data
         ### ods-organization-code 
@@ -2313,7 +2331,7 @@ paths:
         
         In addition to the data available through the FHIR Organization resource we also have the following properties:
         
-          * related organisations using a Relationship ID such as RE4 (commissioned by), RE6 (operated by), RE8 is Partner to and Nomonated Payee for (RE10) 
+          * related organisations using a Relationship ID such as RE4 (commissioned by), RE6 (operated by), RE8 (is partner to and RE10 (nominated payee for) 
           * presence of successor or predecessor information
           * indicator for onward succession
           * geographic values such as Local Authority boundary, Integrated Care Board boundary or Lower Super Output Area (LSOA) 
@@ -2322,7 +2340,8 @@ paths:
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/organization-relationship-instance 
         Contains relationship history
         
-        ### organisation-role-instance 
+        ### organisation-role-instance
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/organization-role-instance
         
         Contains role history
         
@@ -2331,11 +2350,17 @@ paths:
         ### practitioner
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner
         
-        Contains the prescribing practitioner and consultants in a single CodeSystem to enable lookup and validation of Practitioner codes. Practitioners are categorised with a type and role. roles and types can be validated against the practitioner-role CodeSystem.
+        Contains the prescribing practitioner and consultants in a single CodeSystem to enable lookup and validation of Practitioner codes. Practitioners are categorised with a type and role. Roles and types can be validated against the practitioner-role CodeSystem.
         
           Types include `PGP` (General Practitioner), `PNURSE` - Prescribing Nurse and `PDENTCON` Dental Consultants. 
           
           Roles include `PHOSPCON120` (ear nose and throat), `PGP1` (principal GP), `PNURSE1` (district nurse / health visitor)
+        
+        Where practitioners are associated to an organisation, the current/latest values is held in a membership property, these include `ME1` Parent Practice for GPs and `ME4` Parent Trust for a Dental Consultant. More information about the associations can be found in the practitioner-relationship-instance CodeSystem.
+        
+        This CodeSystem has been designed to enable practitioners with multiple codes, i.e a Prescribing Code and a General Medical Council (GMC) code to be returned or validated.
+        
+        Properties numbered from 1 to 8 contain a specific identifier issued by a range of authorities, more information about each assigned identifier including start date and issuing Authority can be found in the practitioner-additional-attribute CodeSystem  
         
         ### practitioner-relationship-instance
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-relationship-instance
@@ -2345,14 +2370,16 @@ paths:
         ### practitioner-additional-attribute
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-additional-attribute
         
-        This CodeSystem has been designed to enable pracitioners with multiple codes, i.e a Prescribing Code and a General Medical Council (GMC) code to be returned or validated.
+        Contains additional information about the identifier issued to a practitioner, in addition to the identifier, the name and ODS code of the Issuing authority, start and end dates for the identifier are included.
       
         ## Geographic Data
-        #### https://digital.nhs.uk/services/organisation-data-service/CodeSystem/geography-name
+        ### geography-name 
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/geography-name
         
         Supports the identification of Office for National Statistics (ONS) identifiers for geographic boundaries used within the ods-organization-code CodeSytem. ODS identifiers for geographic organisations such as `ICB` and `Local Authority` can be retreived from the `Organization` Endpoint.
         
-        #### https://digital.nhs.uk/services/organisation-data-service/CodeSystem/postcode
+        ### postcode
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/postcode
         
         Contains every postcode within the NHS Postcode Directory and a selection of their geographic boundaries.
         
@@ -2373,20 +2400,23 @@ paths:
           * `SMHPC CT4` strategic mental health provider collaborative - CYPMH tier 4
         
         ## Reference Data
-        #### https://digital.nhs.uk/services/organisation-data-service/CodeSystem/ODSOrganisationRole
+        ### ODSOrganisationRole  
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/ODSOrganisationRole
         
         Every organisation has at least one role; a primary role. It may also have additional roles which provide more information about the organisation's function or purpose.
         
-        The full list of role codes is contained in this CodeSystem and can be retreived in full or 
-        individual role codes can be returned or validated.
+        The full list of role codes is contained in this CodeSystem and you can return  all roles or 
+        individual role codes can be returned or validated. Our (Reference Data Catalogue)[https://odsdatasearchandexport.dc4h.link/referenceDataCatalogue/index.html] contains more help information.
         
         This CodeSystem has 1 additional Property: `primaryRole` which contains a true/false value if the role is a primary role or not.
         
-        #### https://digital.nhs.uk/services/organisation-data-service/CodeSystem/ODSRelationship
+        ### ODSRelationship
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/ODSRelationship
         
         Every relationship has a type to describe the nature of the relationship, which includes: `is Commissioned by`, `is operated by` and `is partner to`.
         
-        #### https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-role
+        ### practitioner-role 
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-role
         
         Within the former CSV publications for practitioners, any classifications against a practitioner such as consultant speciality code or nurse prescriber type have been converted to roles and can be returned or validated with this CodeSystem. 
         
@@ -2402,6 +2432,9 @@ paths:
           examples: 
               Organisation-Data: 
                 summary: ods-organization-code
+                value: 'https://fhir.nhs.uk/Id/ods-organization-code'
+              Relationship-Data: 
+                summary: organization-relationship-instance
                 value: 'https://fhir.nhs.uk/Id/ods-organization-code'
               practitioner:
                 summary: practitioner
@@ -3176,20 +3209,22 @@ paths:
   
   /ValueSet/:
     post:
-  
-          summary: Perform a ValueSet expansion
-    
-          operationId: search-ods-organization-code
-          description: |
-            ## Overview
-            To retrieve a subset of records from an individual CodeSystem, you will need to perform a 'POST' operation, in which you will provide the details of the CodeSystem you are searching, along with any filters to be applied and properties you wish to include in the results.
-            
-            When you make a 'POST' operation, you perform an expansion on a ValueSet and provide a requestBody. The endpoint will return a sucessful (200) response code along with the search results, which may be an empty array if no records match your criteria. or an unsuccesful (4xx/5xx) response.
-            
+      summary: Perform a ValueSet expansion
+      operationId: search-ods-organization-code
+      description: |
+        ## Overview
+        To retrieve a subset of records from an individual CodeSystem, you will need to perform a 'POST' operation, in which you will provide the details of the CodeSystem you are searching, along with any filters to be applied and properties you wish to include in the results.
+        
+        When you make a 'POST' operation, you perform an expansion on a ValueSet and provide a requestBody. The endpoint will return a successful (200) response code along with the search results, which may be an empty array if no records match your criteria. or an unsuccesful (4xx/5xx) response.
+        
+        For example:
+        
+          `/ValueSet/$expand`
+          
+        in the example request body below we filter on lastChangeDate and limit the response to 2 records with `count`.
+        searches which generate more than 50,000 results will generate an error, so we recommend that you use count and offset together to ensure you have collected all the required results.
          
-      
-
-          requestBody:
+      requestBody:
             content:
               application/fhir+json:
                 example:
@@ -3236,16 +3271,15 @@ paths:
     ]
 }
         
-      
-        
-          responses:
-            '200':
-              
-              description:  a valid 
-              content:
-                application/fhir+json:
-                  example:
-                    {
+
+      responses:
+        '200':
+          
+          description:  a valid 
+          content:
+            application/fhir+json:
+              example:
+                {
       "resourceType": "ValueSet",
     "expansion": {
         "identifier": "urn:uuid:7799a8c4-2d2a-4d74-b647-2d50aad98904",
@@ -3357,14 +3391,19 @@ paths:
     }
 }    
 
-            '4XX':
-              description: |
-                An error occurred as follows:
+        '4XX':
+            description: |
+              An error occurred as follows:
+              
+                  | HTTP Code   | issue.severity | issue.code    | issue.details.code  | issue.details.display |
+                  |------------ |----------------|---------------|---------------------|---------------------  |
+                  |400          |error           |invalid        |HAPI-1940            |Invalid Date/Time/Quantity format |
+                  |400          |error           |invalid        |HAPI-0524            |Unknown Search Parameter|
+                  |404          |error           |invalid        |HAPI-2001             |Organization not found  |
+                  |405          |error           |method not allowed|HAPI-0427         |Method Not Allowed      |
+                  |422          |unprocessable   |too-costly     |Too many records requested (Use _count and _offset)|Invalid parameter  |
+                  |422          |unprocessable   |processing |No declared filter on Codesystem |An input field has an invalid value for its type  |
                 
-                | HTTP Code   | issue.severity  | issue.code    | issue.details.code        | issue.details.display |
-                |------------ |---------------- |-----------    |-------------------------- |---------------------- |
-                | 404         | error           | not-found     | NO_RECORD_FOUND           | No record found |
-                  
             
   /metadata:
     get:

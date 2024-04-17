@@ -6,8 +6,8 @@
         <Set>
             <FormParams>
                 <FormParam name="grant_type">client_credentials</FormParam>
-                <FormParam name="client_id">apim-client</FormParam>
-                <FormParam name="client_secret">{private.environment_kvm_data}</FormParam>
+                <FormParam name="client_id">{private.environment_kvm_data.client-id}</FormParam>
+                <FormParam name="client_secret">{private.environment_kvm_data.client-secret}</FormParam>
             </FormParams>
             <Headers>
                 <Header name="Content-Type">application/x-www-form-urlencoded</Header>

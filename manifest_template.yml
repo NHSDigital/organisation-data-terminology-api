@@ -19,14 +19,15 @@ APIGEE_ENVIRONMENTS:
   #   display_name: Internal QA
   #   has_mock_auth: true
   #   portal_visibility: false
-  # - name: internal-qa-sandbox
-  #   display_name: Internal QA Sandbox
-  #   portal_visibility: false
+   - name: internal-qa-sandbox
+     display_name: Internal QA Sandbox
+     portal_visibility: false
   # - name: sandbox
   #   display_name: Sandbox
   #   portal_visibility: false
    - name: int
      display_name: Integration Testing
+     make_spec_visible: true
 ---
 meta:
   api:

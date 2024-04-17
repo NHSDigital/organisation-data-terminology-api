@@ -1,6 +1,6 @@
 SERVICE_NAME: organisation-data-terminology-api
 PRODUCT_DISPLAY_NAME: organisation-data-terminology-api
-DESCRIPTION: example description
+DESCRIPTION: FHIR API serving Organization and OrganizationAffiliation Resources
 APIGEE_ENVIRONMENTS:
   - name: internal-dev
     display_name: Internal Development
@@ -15,18 +15,18 @@ APIGEE_ENVIRONMENTS:
   # - name: internal-dev-sandbox
   #   display_name: Internal Development Sandbox
   #   portal_visibility: false
-  # - name: internal-qa
-  #   display_name: Internal QA
-  #   has_mock_auth: true
-  #   portal_visibility: false
-  # - name: internal-qa-sandbox
-  #   display_name: Internal QA Sandbox
-  #   portal_visibility: false
+   - name: internal-qa
+     display_name: Internal QA
+     has_mock_auth: true
+     portal_visibility: false
+   - name: internal-qa-sandbox
+     display_name: Internal QA Sandbox
+     portal_visibility: false
   # - name: sandbox
   #   display_name: Sandbox
   #   portal_visibility: false
-  # - name: int
-  #   display_name: Integration Testing
+   - name: int
+     display_name: Integration Testing
 ---
 meta:
   api:

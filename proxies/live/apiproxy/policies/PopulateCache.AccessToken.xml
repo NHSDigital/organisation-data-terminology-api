@@ -8,6 +8,6 @@
         <KeyFragment>access_token</KeyFragment>
     </CacheKey>
     <ExpirySettings>
-        <TimeoutInSeconds ref="private.sampleTimeOut">12345</TimeoutInSeconds>
+        <TimeoutInSeconds ref="private.sampleTimeOut">1200</TimeoutInSeconds>
     </ExpirySettings>
 </PopulateCache>

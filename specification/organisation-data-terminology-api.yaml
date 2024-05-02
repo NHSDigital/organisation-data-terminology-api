@@ -14,9 +14,9 @@ info:
     ## Overview
     Use this API to access a dataset of health and social care organisations and sites, such as trusts or GP practices, using the [Organisation Data Service (ODS)](https://digital.nhs.uk/services/organisation-data-service). 
     
-    This [FHIR](https://hl7.org/fhir/R4/organization.html) API contains the majority of ODS Content, including Organisations, practitioners and geographic information. It contains all the content found within the [ODS ORD API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) and the [ODS STU3 API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir).
+    This [FHIR](https://hl7.org/fhir/R4/organization.html) API contains the majority of ODS Content, including organisations, practitioners and geographic information. It contains all the content found within the [ODS ORD API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) and the [ODS STU3 API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir).
     
-    ODS holds information for many different types of organisation related to health and social care – mostly in England but also other countries depending on the type of Organisation. For the full scope of data coverage of the ODS APIs, see [Organisation Data Service - data coverage](https://digital.nhs.uk/services/organisation-data-service/ods-data-coverage). 
+    ODS holds information for many different types of organisation related to health and social care – mostly in England but also other countries depending on the type of organisation. For the full scope of data coverage of the ODS APIs, see [Organisation Data Service - data coverage](https://digital.nhs.uk/services/organisation-data-service/ods-data-coverage). 
 
     Every organisation in ODS has a unique identifier called an ODS code. 
 
@@ -40,7 +40,7 @@ info:
     
     We have been able to align the majority of data we hold for an organisation into the FHIR resources Organization and OrganizationAffiliation, through the limited use of extensions, however some previously available information could not be included.
     
-    To access the Organisation attributes which are not included in the Organization resource, use the ods-organization-code CodeSystem. The CodeSystem resource returns the following additional information:
+    To access the organisation attributes which are not included in the Organization resource, use the ods-organization-code CodeSystem. The CodeSystem resource returns the following additional information:
 
       - organisation - Assigning Authority 
       - related entities - the current related entity of any supported relationships 
@@ -56,7 +56,7 @@ info:
     
     ### Postcodes and geographic boundaries available
     
-    For every postcode within the NHS Postcode Directory, we have compiled a CodeSystem which contains the postcode along with its key Health and Social Care boundaries, including, Primary Care Organisations, Integrated Care Boards,  Local Authority 2011 Lower Super Output Areas (LSOA11), Cancer Alliances and NHS England Regions 
+    For every postcode within the NHS Postcode Directory, we have compiled a CodeSystem which contains the postcode along with its key Health and Social Care boundaries, including, Primary Care Organisations (PCO), Integrated Care Boards (ICB), Local Authority (LA), 2011 Lower Super Output Areas (LSOA11), Cancer Alliances (CA) and NHS England Regions (NHSER). 
 
     ### CodeSystems to support the full range of ODS Content
   

@@ -18,13 +18,13 @@ info:
     
     ODS holds information for many different types of organisation related to health and social care – mostly in England but also other countries depending on the type of organisation. For the full scope of data coverage of the ODS APIs, see [Organisation Data Service - data coverage](https://digital.nhs.uk/services/organisation-data-service/ods-data-coverage). 
 
-    Every  in ODS has a unique identifier called an ODS code. 
+    Every organisation in ODS has a unique identifier called an ODS code. 
 
     Using this API, you can:
     
-      - search for an  or site to find its ODS code 
-      - get  details for a given ODS code
-      - get details of related s and sites
+      - search for an organisation or site to find its ODS code 
+      - get organisation details for a given ODS code
+      - get details of related organisations and sites
       - get details of records changed in a given date range
       - search for a practitioner to find their ODS code 
       - get practitioner details for a given ODS code 
@@ -36,9 +36,9 @@ info:
     This FHIR API can give you `Organization` and `OrganizationAffiliation` FHIR resources, or you can specify exactly what information you want to return with a wide range of CodeSystems. 
     
 
-    ###  data
+    ### Organisation data
     
-    We have been able to align the majority of data we hold for an  into the FHIR resources Organization and OrganizationAffiliation, through the limited use of extensions, however some previously available information could not be included.
+    We have been able to align the majority of data we hold for an organisation into the FHIR resources Organization and OrganizationAffiliation, through the limited use of extensions, however some previously available information could not be included.
     
     To access the organisation attributes which are not included in the Organization resource, use the ods-organization-code CodeSystem. The CodeSystem resource returns the following additional information:
 

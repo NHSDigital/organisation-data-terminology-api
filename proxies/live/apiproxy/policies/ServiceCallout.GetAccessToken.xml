@@ -19,7 +19,7 @@
     <Response>accessTokenResponse</Response>
     <HTTPTargetConnection>
         <Properties/>
-        <URL>https://jenkins.ods.dc4h.link/authorisation/auth/realms/terminology/protocol/openid-connect/token</URL>
+        <URL>https://hscorganisationdata.nhs.uk/authorisation/auth/realms/terminology/protocol/openid-connect/token</URL>
         <SSLInfo>
             <Enabled>true</Enabled>
             <ClientAuthEnabled>false</ClientAuthEnabled>

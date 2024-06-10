@@ -4,6 +4,15 @@
       <Step>
         <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
       </Step>
+<!--      <Step>
+        <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
+      </Step>-->
+      <Step>
+        <Name>FlowCallout.ApplyRateLimiting</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.RemoveAuthHeaders</Name>
+      </Step>
     </Request>
   </PreFlow>
 
@@ -46,6 +55,26 @@
       </Condition>
     </Flow>
   </Flows>
+  <PostFlow>
+    <Request>
+      <Step>
+        <Name>LookupCache.GetAccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false</Condition>
+        <Name>ServiceCallout.GetAccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false and accessTokenResponse.content != null</Condition>
+        <Name>ExtractVariables.AccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false</Condition>
+        <Name>PopulateCache.AccessToken</Name>
+      </Step>
+    </Request>
+  </PostFlow>
+  
   <PostClientFlow name="PostClientFlow">
     <Response>
       <Step>
@@ -69,6 +98,17 @@
   <RouteRule name="organisation-data-terminology-api-target">
     <TargetEndpoint>organisation-data-terminology-api-target</TargetEndpoint>
   </RouteRule>
+  <FaultRules>
+    <FaultRule name="access_token_expired">
+      <Step>
+        <Name>ExtractVariables.OAuthErrorFaultString</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+      </Step>
+      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+    </FaultRule>
+  </FaultRules>
   <DefaultFaultRule>
     <Step>
       <Name>AssignMessage.Errors.CatchAllMessage</Name>

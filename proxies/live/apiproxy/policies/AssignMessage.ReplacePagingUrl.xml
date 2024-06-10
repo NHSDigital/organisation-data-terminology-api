@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage name="AssingMessage.ReplacePagingUrl">
-    <AssignTo createNew="false" type="response"/>
+<AssignMessage name="AssignMessage.ReplacePagingUrl">
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>needle</Name>
+        <Value>https://hscorganisationdata.nhs.uk/</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>replacement</Name>
+        <Template>https://{clientrequest.hostHeader}/{proxy.basepath}/</Template>
+    </AssignVariable>
     <Set>
-        <Payload>{replace(response.content, '^https://hscorganisationdata.nhs.uk/','https://internal-dev.api.service.nhs.uk/')}</Payload>
+        <Payload>{replaceAll(response.content,needle,replacement)}</Payload>
     </Set>
 </AssignMessage>

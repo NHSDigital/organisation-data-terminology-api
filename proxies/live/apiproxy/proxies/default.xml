@@ -13,6 +13,9 @@
       <Step>
         <Name>AssignMessage.RemoveAuthHeaders</Name>
       </Step>
+      <Step>
+        <Name>ExtractVariables.RequestHostHeader</Name>
+      </Step>
     </Request>
   </PreFlow>
 
@@ -73,6 +76,11 @@
         <Name>PopulateCache.AccessToken</Name>
       </Step>
     </Request>
+    <Response>
+      <Step>
+        <Name>AssignMessage.ReplacePagingUrl</Name>
+      </Step>
+    </Response>
   </PostFlow>
   
   <PostClientFlow name="PostClientFlow">

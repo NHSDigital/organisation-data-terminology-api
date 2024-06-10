@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AssingMessage.ReplacePagingUrl">
+    <AssignTo createNew="false" type="response"/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Set>
+        <Payload>{replace(response.content, '^https://hscorganisationdata.nhs.uk/','https://internal-dev.api.service.nhs.uk/')}</Payload>
+    </Set>
+</AssignMessage>

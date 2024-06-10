@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddProxyPathHeader">
+    <DisplayName>AssignMessage.RemoveAuthHeaders</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <Add>
+        <Headers>
+            <Header name="X-Proxy-Path">{replaceAll(request.path,'CodeSystem','CS')}</Header>
+        </Headers>
+    </Add>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

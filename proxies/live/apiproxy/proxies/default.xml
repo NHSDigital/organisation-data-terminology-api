@@ -14,6 +14,9 @@
         <Name>AssignMessage.RemoveAuthHeaders</Name>
       </Step>
       <Step>
+        <Name>AssignMessage.AddProxyPathHeader</Name>
+      </Step>
+      <Step>
         <Name>ExtractVariables.RequestHostHeader</Name>
       </Step>
     </Request>

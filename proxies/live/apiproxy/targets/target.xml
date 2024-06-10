@@ -6,6 +6,13 @@
       </Step>
     </Request>
   </PreFlow>
+  <PostFlow>
+    <Request>
+      <Step>
+        <Name>AssignMessage.RewriteTargetUrl</Name>
+      </Step>
+    </Request>
+  </PostFlow>
 
   <!--
     To point to a named target server as this is how it SHOULD be implemented:
@@ -26,5 +33,6 @@
     <LoadBalancer>
       <Server name="organisation-data-terminology-api" />
     </LoadBalancer>
+        <Path>{targetPath}</Path>
   </HTTPTargetConnection>
 </TargetEndpoint>

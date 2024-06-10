@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddProxyPathHeader">
-    <DisplayName>AssignMessage.RemoveAuthHeaders</DisplayName>
+    <DisplayName>AssignMessage.AddProxyPathHeader</DisplayName>
     <Properties/>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>targetPath</Name>
+        <Template>production1/{request.header.X-Proxy-Path-Orig}</Template>
+    </AssignVariable>
     <Add>
         <Headers>
-            <Header name="X-Proxy-Path">{replaceAll(request.path,'CodeSystem','CS')}</Header>
+            <Header name="X-Proxy-Path">{targetPath}</Header>
         </Headers>
     </Add>
     <AssignTo createNew="false" transport="http" type="request"/>

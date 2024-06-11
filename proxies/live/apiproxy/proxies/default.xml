@@ -4,9 +4,9 @@
       <Step>
         <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
       </Step>
-      <Step>
+<!--      <Step>
         <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
-      </Step>
+      </Step>-->
       <Step>
         <Name>FlowCallout.ApplyRateLimiting</Name>
       </Step>

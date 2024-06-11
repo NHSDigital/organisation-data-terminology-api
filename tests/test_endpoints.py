@@ -77,4 +77,8 @@ def test_count_orgs(nhsd_apim_proxy_url):
     if resp.status_code != 200:
         pytest.fail(f"Status code {resp.status_code}, expecting 200")
 
-    assert resp.status_code == 200
+    tot = resp.json().get("total")
+
+    if tot < 280000:
+        pytest.fail(f"Got this many Organizations: {tot}, expecting at least 280000")
+    assert tot > 280000

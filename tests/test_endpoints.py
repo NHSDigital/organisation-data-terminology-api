@@ -159,7 +159,7 @@ def test_rr8(nhsd_apim_proxy_url):
 
     ident = resp.json().get("id")
 
-    if ident != "id":
+    if ident != "RR8":
         pytest.fail(f"Got this id: {ident}, expecting RR8")
     assert ident == "RR8"
 

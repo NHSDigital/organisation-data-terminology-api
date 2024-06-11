@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddProxyPathHeaderOrig">
+    <DisplayName>AssignMessage.AddProxyPathHeaderOrig</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>proxybasepathwithslash</Name>
+        <Template>/{proxy.basepath}</Template>
+    </AssignVariable>
+    <Add>
+        <Headers>
+            <Header name="X-Proxy-Path">{replaceAll(request.path,proxybasepathwithslash,'')}</Header>
+        </Headers>
+    </Add>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

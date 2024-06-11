@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.RequestHostHeader">
+    <Source>request</Source>
+    <Header name="Host">
+        <Pattern ignoreCase="false">{hostHeader}</Pattern>
+    </Header>
+    <VariablePrefix>clientrequest</VariablePrefix>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+</ExtractVariables>

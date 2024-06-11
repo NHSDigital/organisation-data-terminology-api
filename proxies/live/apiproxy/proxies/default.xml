@@ -4,6 +4,25 @@
       <Step>
         <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
       </Step>
+<!--      <Step>
+        <Name>OauthV2.VerifyAccessTokenAppLevel3OrCis2Aal3</Name>
+      </Step>-->
+      <Step>
+        <Name>FlowCallout.ApplyRateLimiting</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.RemoveAuthHeaders</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.AddProxyPathHeaderOrig</Name>
+      </Step>
+      <Step>
+        <Condition>(request.header.X-Proxy-Path =| "/fhir/CodeSystem") or (request.header.X-Proxy-Path =| "/fhir/ValueSet") or (request.header.X-Proxy-Path =| "/fhir/ConceptMap") or (request.header.X-Proxy-Path =| "/fhir/StructureDefinition")</Condition>
+        <Name>AssignMessage.AddProxyPathHeader</Name>
+      </Step>
+      <Step>
+        <Name>ExtractVariables.RequestHostHeader</Name>
+      </Step>
     </Request>
   </PreFlow>
 
@@ -30,10 +49,6 @@
     <Flow name="StatusEndpoint">
       <Request>
         <Step>
-          <Condition>request.header.apikey = null or private.common.status-endpoint-api-key != request.header.apikey</Condition>
-          <Name>RaiseFault.401Unauthorized</Name>
-        </Step>
-        <Step>
           <Name>ServiceCallout.CallHealthcheckEndpoint</Name>
         </Step>
       </Request>
@@ -46,6 +61,34 @@
       </Condition>
     </Flow>
   </Flows>
+  <PostFlow>
+    <Request>
+      <Step>
+        <Name>LookupCache.GetAccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false</Condition>
+        <Name>ServiceCallout.GetAccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false and accessTokenResponse.content != null</Condition>
+        <Name>ExtractVariables.AccessToken</Name>
+      </Step>
+      <Step>
+        <Condition>lookupcache.LookupCache.GetAccessToken.cachehit = false</Condition>
+        <Name>PopulateCache.AccessToken</Name>
+      </Step>
+    </Request>
+    <Response>
+      <Step>
+        <Name>AssignMessage.ReplacePagingUrlProduction1</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.ReplacePagingUrl</Name>
+      </Step>
+    </Response>
+  </PostFlow>
+  
   <PostClientFlow name="PostClientFlow">
     <Response>
       <Step>
@@ -69,6 +112,17 @@
   <RouteRule name="organisation-data-terminology-api-target">
     <TargetEndpoint>organisation-data-terminology-api-target</TargetEndpoint>
   </RouteRule>
+  <FaultRules>
+    <FaultRule name="access_token_expired">
+      <Step>
+        <Name>ExtractVariables.OAuthErrorFaultString</Name>
+      </Step>
+      <Step>
+        <Name>AssignMessage.OAuthPolicyErrorResponse</Name>
+      </Step>
+      <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+    </FaultRule>
+  </FaultRules>
   <DefaultFaultRule>
     <Step>
       <Name>AssignMessage.Errors.CatchAllMessage</Name>

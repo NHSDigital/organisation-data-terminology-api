@@ -1,0 +1,10 @@
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.AccessToken">
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <Properties/>
+  <JSONPayload>
+      <Variable name="access_token">
+          <JSONPath>$.access_token</JSONPath>
+      </Variable>
+  </JSONPayload>
+  <Source clearPayload="false">accessTokenResponse.content</Source>
+</ExtractVariables>

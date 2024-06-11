@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AssignMessage.RewriteTargetUrl">
+    <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>target.copy.pathsuffix</Name>
+        <Value>false</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>targetPath</Name>
+        <Template>{request.header.X-Proxy-Path}</Template>
+    </AssignVariable>
+</AssignMessage>

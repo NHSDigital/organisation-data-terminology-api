@@ -1,5 +1,5 @@
 docker_service:
-  - name: sandbox
+  - name: sandboxy
     expose: true
     environment:
       - name: NODE_ENV

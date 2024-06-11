@@ -85,9 +85,9 @@ def test_count_orgs(nhsd_apim_proxy_url):
 
 
 @pytest.mark.sandboxtest
-def test_count_orgsaffs(nhsd_apim_proxy_url):
+def test_count_orgaffs(nhsd_apim_proxy_url):
     resp = requests.get(
-        f"{nhsd_apim_proxy_url}/fhir/OrganizationAffilitation?_count=0"
+        f"{nhsd_apim_proxy_url}/fhir/OrganizationAffiliation?_count=0"
     )
 
     if resp.status_code != 200:

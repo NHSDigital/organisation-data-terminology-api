@@ -6,5 +6,3 @@ for more ideas on how to test the authorization of your API.
 import requests
 import pytest
 from os import getenv
-
-

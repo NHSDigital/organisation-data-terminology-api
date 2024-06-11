@@ -9,6 +9,9 @@
   <PostFlow>
     <Request>
       <Step>
+        <Name>AssignMessage.RewriteTargetUrlProduction1</Name>
+      </Step>
+      <Step>
         <Name>AssignMessage.RewriteTargetUrl</Name>
       </Step>
     </Request>

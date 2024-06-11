@@ -17,6 +17,7 @@
         <Name>AssignMessage.AddProxyPathHeaderOrig</Name>
       </Step>
       <Step>
+        <Condition>(request.header.X-Proxy-Path =| "/fhir/CodeSystem") or (request.header.X-Proxy-Path =| "/fhir/ValueSet") or (request.header.X-Proxy-Path =| "/fhir/ConceptMap") or (request.header.X-Proxy-Path =| "/fhir/StructureDefinition")</Condition>
         <Name>AssignMessage.AddProxyPathHeader</Name>
       </Step>
       <Step>

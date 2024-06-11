@@ -5,12 +5,12 @@
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
     <AssignVariable>
         <Name>targetPath</Name>
-        <Template>production1/{request.header.X-Proxy-Path-Orig}</Template>
+        <Template>/production1{request.header.X-Proxy-Path}</Template>
     </AssignVariable>
-    <Add>
+    <Set>
         <Headers>
             <Header name="X-Proxy-Path">{targetPath}</Header>
         </Headers>
-    </Add>
+    </Set>
     <AssignTo createNew="false" transport="http" type="request"/>
 </AssignMessage>

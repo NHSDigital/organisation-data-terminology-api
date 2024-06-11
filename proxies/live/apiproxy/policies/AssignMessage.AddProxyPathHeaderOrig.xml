@@ -9,7 +9,7 @@
     </AssignVariable>
     <Add>
         <Headers>
-            <Header name="X-Proxy-Path-Orig">{replaceAll(request.uri,proxybasepathwithslash,'')}</Header>
+            <Header name="X-Proxy-Path">{replaceAll(request.path,proxybasepathwithslash,'')}</Header>
         </Headers>
     </Add>
     <AssignTo createNew="false" transport="http" type="request"/>

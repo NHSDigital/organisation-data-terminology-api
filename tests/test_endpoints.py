@@ -66,3 +66,14 @@ def test_wait_for_status(nhsd_apim_proxy_url, status_endpoint_auth_headers):
         pytest.fail("version not found")
 
     assert deployed_commitId == getenv('SOURCE_COMMIT_ID')
+
+@pytest.mark.sandboxtest
+def test_count_orgs(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/Organization?_count=0"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    assert resp.status_code == 200

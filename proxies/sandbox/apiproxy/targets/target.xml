@@ -1,4 +1,4 @@
-<TargetEndpoint name="organisation-data-terminology-api-target">
+<TargetEndpoint name="sandbox">
   <PreFlow>
     <Request>
       <Step>

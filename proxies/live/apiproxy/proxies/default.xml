@@ -81,6 +81,9 @@
     </Request>
     <Response>
       <Step>
+        <Name>AssignMessage.ReplacePagingUrlProduction1</Name>
+      </Step>
+      <Step>
         <Name>AssignMessage.ReplacePagingUrl</Name>
       </Step>
     </Response>

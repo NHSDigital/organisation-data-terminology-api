@@ -5,6 +5,7 @@
         <Name>FlowCallout.GetEnvironmentKeyValueMapData</Name>
       </Step>
       <Step>
+          <Condition>(proxy.pathsuffix != "/_ping") and (proxy.pathsuffix != "/_status")</Condition>
           <Name>VerifyApiKey.FromHeader</Name>
       </Step>
       <Step>

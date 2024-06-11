@@ -109,8 +109,8 @@
   <RouteRule name="NoRouteStatus">
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
-  <RouteRule name="organisation-data-terminology-api-target">
-    <TargetEndpoint>organisation-data-terminology-api-target</TargetEndpoint>
+  <RouteRule name="sandbox">
+    <TargetEndpoint>sandbox</TargetEndpoint>
   </RouteRule>
   <FaultRules>
     <FaultRule name="access_token_expired">

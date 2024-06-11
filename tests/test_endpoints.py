@@ -67,6 +67,7 @@ def test_wait_for_status(nhsd_apim_proxy_url, status_endpoint_auth_headers):
 
     assert deployed_commitId == getenv('SOURCE_COMMIT_ID')
 
+
 @pytest.mark.sandboxtest
 def test_count_orgs(nhsd_apim_proxy_url):
     resp = requests.get(

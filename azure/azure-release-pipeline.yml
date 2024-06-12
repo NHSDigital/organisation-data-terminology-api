@@ -57,6 +57,10 @@ extends:
         depends_on:
            - internal_qa
            - internal_qa_sandbox
+      - environment: prod
+        depends_on:
+           - internal_qa
+           - internal_qa_sandbox
     #   - environment: ref
     #     depends_on:
     #       - internal_qa

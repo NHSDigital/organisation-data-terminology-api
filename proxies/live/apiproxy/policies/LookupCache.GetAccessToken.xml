@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="LookupCache.GetAccessToken">
+    <DisplayName>LookupCache.GetAccessToken</DisplayName>
+    <CacheResource>organisation-data-terminology-api-cache</CacheResource>
+    <AssignTo>access_token</AssignTo>
+    <Scope>Exclusive</Scope>
+    <CacheKey>
+        <KeyFragment>access_token</KeyFragment>
+    </CacheKey>
+</LookupCache>

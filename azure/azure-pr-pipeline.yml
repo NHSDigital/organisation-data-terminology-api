@@ -37,8 +37,10 @@ extends:
         post_deploy:
           - template: ./templates/run-tests.yml
             parameters:
+              full: false
+      - environment: internal-dev-sandbox
+        proxy_path: sandbox
+        post_deploy:
+          - template: ./templates/run-tests.yml
+            parameters:
               full: true
-      # - environment: internal-dev-sandbox
-      #   proxy_path: sandbox
-      #   post_deploy:
-      #     - template: ./templates/run-tests.yml

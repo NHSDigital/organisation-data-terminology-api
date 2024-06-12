@@ -68,25 +68,99 @@ def test_wait_for_status(nhsd_apim_proxy_url, status_endpoint_auth_headers):
     assert deployed_commitId == getenv('SOURCE_COMMIT_ID')
 
 
-@pytest.mark.nhsd_apim_authorization({"access": "application", "level": "level0"})
-def test_app_level0(nhsd_apim_proxy_url, nhsd_apim_auth_headers):
-    resp = requests.get(f"{nhsd_apim_proxy_url}", headers=nhsd_apim_auth_headers)
-    assert resp.status_code == 401  # unauthorized
+@pytest.mark.sandboxtest
+def test_count_orgs(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/Organization?_count=0"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    tot = resp.json().get("total")
+
+    if tot < 280000:
+        pytest.fail(f"Got this many Organizations: {tot}, expecting at least 280000")
+    assert tot > 280000
 
 
-@pytest.mark.nhsd_apim_authorization({"access": "application", "level": "level3"})
-def test_app_level3(nhsd_apim_proxy_url, nhsd_apim_auth_headers):
-    resp = requests.get(f"{nhsd_apim_proxy_url}", headers=nhsd_apim_auth_headers)
-    assert resp.status_code == 200
+@pytest.mark.sandboxtest
+def test_count_orgaffs(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/OrganizationAffiliation?_count=0"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    tot = resp.json().get("total")
+
+    if tot < 600000:
+        pytest.fail(f"Got this many OrganizationAffiliations: {tot}, expecting at least 600000")
+    assert tot > 600000
 
 
-@pytest.mark.nhsd_apim_authorization(
-    {
-        "access": "healthcare_worker",
-        "level": "aal3",
-        "login_form": {"username": "656005750104"},
-    }
-)
-def test_cis2_aal3(nhsd_apim_proxy_url, nhsd_apim_auth_headers):
-    resp = requests.get(f"{nhsd_apim_proxy_url}", headers=nhsd_apim_auth_headers)
+@pytest.mark.sandboxtest
+def test_count_list(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/List?_count=0"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    tot = resp.json().get("total")
+
+    if tot < 4:
+        pytest.fail(f"Got this many List resources: {tot}, expecting at least 4")
+    assert tot > 3
+
+
+@pytest.mark.sandboxtest
+def test_count_searchparamenters(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/SearchParameter?_count=0"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    tot = resp.json().get("total")
+
+    if tot < 3:
+        pytest.fail(f"Got this many SearchParameter resources: {tot}, expecting at least 3")
+    assert tot > 2
+
+
+@pytest.mark.sandboxtest
+def test_count_codesystem(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/CodeSystem?_count=0"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    tot = resp.json().get("total")
+
+    if tot < 13:
+        pytest.fail(f"Got this many CodeSystem resources: {tot}, expecting at least 13")
+    assert tot > 12
+
+
+@pytest.mark.sandboxtest
+def test_rr8(nhsd_apim_proxy_url):
+    resp = requests.get(
+        f"{nhsd_apim_proxy_url}/fhir/Organization/RR8"
+    )
+
+    if resp.status_code != 200:
+        pytest.fail(f"Status code {resp.status_code}, expecting 200")
+
+    ident = resp.json().get("id")
+
+    if ident != "RR8":
+        pytest.fail(f"Got this id: {ident}, expecting RR8")
+    assert ident == "RR8"
+
     assert resp.status_code == 200

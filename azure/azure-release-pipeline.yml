@@ -35,20 +35,24 @@ extends:
         post_deploy:
           - template: ./templates/run-tests.yml
             parameters:
-              full: true
-    #   - environment: internal-dev-sandbox
-    #     proxy_path: sandbox
-    #     post_deploy:
-    #       - template: ./templates/run-tests.yml
-      - environment: internal-qa
+              full: false
+      - environment: internal-dev-sandbox
+        proxy_path: sandbox
         post_deploy:
           - template: ./templates/run-tests.yml
             parameters:
               full: true
+      - environment: internal-qa
+        post_deploy:
+          - template: ./templates/run-tests.yml
+            parameters:
+              full: false
       - environment: internal-qa-sandbox
         proxy_path: sandbox
         post_deploy:
           - template: ./templates/run-tests.yml
+            parameters:
+              full: true
     #   - environment: ref
     #     depends_on:
     #       - internal_qa

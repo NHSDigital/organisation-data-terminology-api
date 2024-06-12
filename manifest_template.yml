@@ -28,6 +28,9 @@ APIGEE_ENVIRONMENTS:
   - name: int
     display_name: Integration Testing
     make_spec_visible: true
+  - name: prod
+    approval_type: manual
+    display_name_suffix: Production
 ---
 meta:
   api:

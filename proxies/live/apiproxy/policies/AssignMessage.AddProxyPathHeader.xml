@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddProxyPathHeader">
+    <DisplayName>AssignMessage.AddProxyPathHeader</DisplayName>
+    <Properties/>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignVariable>
+        <Name>targetPath</Name>
+        <Template>/production1{request.header.X-Proxy-Path}</Template>
+    </AssignVariable>
+    <Set>
+        <Headers>
+            <Header name="X-Proxy-Path">{targetPath}</Header>
+        </Headers>
+    </Set>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

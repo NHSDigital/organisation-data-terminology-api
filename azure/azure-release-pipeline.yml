@@ -62,6 +62,12 @@ extends:
         depends_on:
            - internal_qa
            - internal_qa_sandbox
+      - environment: sandbox
+        proxy_path: sandbox
+        post_deploy:
+          - template: ./templates/run-tests.yml
+            parameters:
+              full: true          
     #   - environment: ref
     #     depends_on:
     #       - internal_qa

@@ -168,14 +168,14 @@ info:
     returns the dataset for the organisation whose ODS code is RJY.
     
     ### Integration testing
-    You can use the Integration environment to perform your integration testing.
+    You can use the integration environment to perform your integration testing.
     
     ## Onboarding
     You need to confirm your eligibility with us before you can go live with this API. We call this onboarding. 
     
     As part of this process, you need to answer a simple set of questions, detailing information about yourself and your organisation.
     
-    We will then reach out to request information to enable your application before will approve your appilcation.
+    We will then reach out to request information to enable your application before we approve your application.
 
 
     To understand how our online digital onboarding process works, see [digital onboarding](https://digital.nhs.uk/developer/guides-and-documentation/digital-onboarding). 
@@ -196,11 +196,8 @@ info:
     </div> 
     
 servers:
-  - url: 'https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir'
-    description: Integration (INT) environment.
-  - url: 'https://api.service.nhs.uk/organisation-data-terminology-api/fhir'
-    description: Production environment.   
-    
+  - url: 'https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir'
+    description: Sandbox    
 paths:
   /Organization:
     get:

@@ -164,7 +164,7 @@ info:
     | Production                  |https://api.service.nhs.uk/organisation-data-terminology-api/fhir          |
     
     For example:
-    `TBC/fhir/Organization/RJY`
+    `https://api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/RJY`
     returns the dataset for the organisation whose ODS code is RJY.
     
     ### Integration testing

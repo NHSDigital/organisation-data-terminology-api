@@ -159,21 +159,25 @@ info:
     
     | Environments                | Base URLs                                                              |
     | -----------------           | ---------------------------------------------------------------------- |
-    | User acceptance test (UAT)  |TBC                      |
-    | Production                  |TBC          |
+    | Sandbox (no auth)  |https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir                    |
+    | Integration (INT)  |https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir                    |
+    | Production                  |https://api.service.nhs.uk/organisation-data-terminology-api/fhir          |
     
     For example:
-    `TBC/fhir/Organization/RJY`
+    `https://api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/RJY`
     returns the dataset for the organisation whose ODS code is RJY.
     
     ### Integration testing
-    You can use the UAT environment to perform your integration testing.
+    You can use the integration environment to perform your integration testing.
     
     ## Onboarding
     You need to confirm your eligibility with us before you can go live with this API. We call this onboarding. 
     
     As part of this process, you need to answer a simple set of questions, detailing information about yourself and your organisation.
     
+    We will then reach out to request information to enable your application before we approve your application.
+
+
     To understand how our online digital onboarding process works, see [digital onboarding](https://digital.nhs.uk/developer/guides-and-documentation/digital-onboarding). 
 
     <div class="nhsd-m-emphasis-box nhsd-m-emphasis-box--emphasis nhsd-!t-margin-bottom-6" aria-label="Highlighted Information">
@@ -192,11 +196,8 @@ info:
     </div> 
     
 servers:
-  - url: ''
-    description: User acceptance test (UAT) environment.
-  - url: ''
-    description: Production environment.   
-    
+  - url: 'https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir'
+    description: Sandbox    
 paths:
   /Organization:
     get:
@@ -228,11 +229,11 @@ paths:
 
         You can also request any related relations resources using the `_revinclude` parameter to return an OrganizationAffiliation Resource. 
         
-#        You can try out the sandbox using the 'Try this API' feature on this page. (Coming Soon!)
+        You can try out the sandbox using the 'Try this API' feature on this page.
         
-#        Alternatively, you can try out the sandbox using our Postman collection (placeholder link):
+        Alternatively, you can try out the sandbox using our Postman collection (placeholder link):
         
-#        [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/32547823-005ebee4-7510-44c3-bb0e-58f26b2ba747)
+        [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/26163840/2sA3dvmD94)
         
       parameters:
         - in: query
@@ -541,7 +542,6 @@ paths:
           content:
             application/fhir+json:
               example:
-                
                 {
     "resourceType": "Bundle",
     "id": "d84a1a14-d90f-4dd7-a5bc-b5e56a81d1af",
@@ -552,16 +552,16 @@ paths:
     "link": [
         {
             "relation": "self",
-            "url": "https://jenkins.ods.dc4h.link/fhir/Organization?_count=2&lastChangeDate=lt2023-05-04&lastChangeDate=gt2023-05-02"
+            "url": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization?_count=2&lastChangeDate=lt2023-05-04&lastChangeDate=gt2023-05-02"
         },
         {
             "relation": "next",
-            "url": "https://jenkins.ods.dc4h.link/fhir/Organization?_count=2&_offset=2&lastChangeDate=lt2023-05-04&lastChangeDate=gt2023-05-02"
+            "url": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization?_count=2&_offset=2&lastChangeDate=lt2023-05-04&lastChangeDate=gt2023-05-02"
         }
     ],
     "entry": [
         {
-            "fullUrl": "https://jenkins.ods.dc4h.link/fhir/Organization/AQN",
+            "fullUrl": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/AQN",
             "resource": {
                 "resourceType": "Organization",
                 "id": "AQN",
@@ -706,7 +706,7 @@ paths:
             }
         },
         {
-            "fullUrl": "https://jenkins.ods.dc4h.link/fhir/Organization/C4O9I",
+            "fullUrl": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/C4O9I",
             "resource": {
                 "resourceType": "Organization",
                 "id": "C4O9I",
@@ -885,14 +885,14 @@ paths:
                   <type value="searchset"/>
                   <link>
                       <relation value="self"/>
-                      <url value="https://jenkins.ods.dc4h.link/fhir/Organization?_count=2&amp;_format=xml&amp;lastChangeDate=lt2023-05-04&amp;lastChangeDate=gt2023-05-02"/>
+                      <url value="https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization?_count=2&amp;_format=xml&amp;lastChangeDate=lt2023-05-04&amp;lastChangeDate=gt2023-05-02"/>
                   </link>
                   <link>
                       <relation value="next"/>
-                      <url value="https://jenkins.ods.dc4h.link/fhir/Organization?_count=2&amp;_format=xml&amp;_offset=2&amp;lastChangeDate=lt2023-05-04&amp;lastChangeDate=gt2023-05-02"/>
+                      <url value="https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization?_count=2&amp;_format=xml&amp;_offset=2&amp;lastChangeDate=lt2023-05-04&amp;lastChangeDate=gt2023-05-02"/>
                   </link>
                   <entry>
-                      <fullUrl value="https://jenkins.ods.dc4h.link/fhir/Organization/AQN"/>
+                      <fullUrl value="https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/AQN"/>
                       <resource>
                           <Organization xmlns="http://hl7.org/fhir">
                               <id value="AQN"/>
@@ -999,7 +999,7 @@ paths:
                       </search>
                   </entry>
                   <entry>
-                      <fullUrl value="https://jenkins.ods.dc4h.link/fhir/Organization/C4O9I"/>
+                      <fullUrl value="https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/C4O9I"/>
                       <resource>
                           <Organization xmlns="http://hl7.org/fhir">
                               <id value="C4O9I"/>
@@ -1199,7 +1199,13 @@ paths:
           * relationship status 
           
         It is also possible to return the relevant Organization Resources in these searches using the `_include` parameter
-          
+                You can try out the sandbox using the 'Try this API' feature on this page.
+        
+        Alternatively, you can try out the sandbox using our Postman collection (placeholder link):
+        
+        [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/26163840/2sA3dvmD94)
+        
+  
       parameters:
         - in: query
           name: _id
@@ -1295,12 +1301,12 @@ paths:
     "link": [
         {
             "relation": "self",
-            "url": "https://jenkins.ods.dc4h.link/fhir/OrganizationAffiliation?primary-organization=FDC49"
+            "url": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/OrganizationAffiliation?primary-organization=FDC49"
         }
     ],
     "entry": [
         {
-            "fullUrl": "https://jenkins.ods.dc4h.link/fhir/OrganizationAffiliation/383689",
+            "fullUrl": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/OrganizationAffiliation/383689",
             "resource": {
                 "resourceType": "OrganizationAffiliation",
                 "id": "383689",
@@ -1397,7 +1403,7 @@ paths:
             }
         },
         {
-            "fullUrl": "https://jenkins.ods.dc4h.link/fhir/OrganizationAffiliation/648449",
+            "fullUrl": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/OrganizationAffiliation/648449",
             "resource": {
                 "resourceType": "OrganizationAffiliation",
                 "id": "648449",
@@ -1494,7 +1500,7 @@ paths:
             }
         },
         {
-            "fullUrl": "https://jenkins.ods.dc4h.link/fhir/OrganizationAffiliation/716945",
+            "fullUrl": "https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir/OrganizationAffiliation/716945",
             "resource": {
                 "resourceType": "OrganizationAffiliation",
                 "id": "716945",

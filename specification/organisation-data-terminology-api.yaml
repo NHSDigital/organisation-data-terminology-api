@@ -45,7 +45,7 @@ info:
       - organisation - Assigning Authority 
       - related entities - the current related entity of any supported relationships 
       - succession - any predecessors and/or successors and a flag to indicate the successor has also been succeeded 
-      - geographic - the appropriate mapping from the postcode dataset including Local Authority, Integrated Care Board or Lower Super Output Area (LSOA) 
+      - geographic - the appropriate mapping from the postcode dataset including Local Authority, Integrated Care Board or 2011 Lower Super Output Area (LSOA11) 
 
     ### Practitioner data
     ODS publishes a limited set of prescribers held by the NHS Business Services Authority, which includes General Practitioners and Nurse Prescribers, alongside Hospital and Dental Consultants provided by the NHS England Workforce and Facilities team as an extract from the Electronic Staff Record system.
@@ -67,12 +67,12 @@ info:
     - organization-relationship-instance - contains historic and current relationships
     - organization-role-instance - contains historic and current role instances 
     - practitioner-role - contains the role a practitioner performs (currently limited to prescriber types/roles and consultants)
-    - practitioner-relationship-instance - contains the associations between Prescribers (GPs) and GP Practices only 
+    - practitioner-relationship-instance - contains the associations between prescribers (GPs) and GP Practices only 
     - ODSOrganisationRole - reference data for Primary and Non Primary Roles (Role ID, Role Name, and Primary/Non Primary indicator)
-    - ODSRelationship - reference data for Relationships (Relationship Type ID and Relationship Name)  
+    - ODSRelationship - reference data for relationships (Relationship Type ID and Relationship Name)  
     - ODSRecordClass - reference data for record classes for example organisation or site 
     - ODSRecordUseType - reference data for the type of use – Full for current records, refOnly for minimal records included for referential integrity
-    - geography-name - reference data for ONS identifiers used within the Postcode CodeSystem 
+    - geography-name - reference data for ONS identifiers used within the postcode CodeSystem 
 
 
     <section class="nhsd-m-emphasis-box nhsd-m-emphasis-box--important nhsd-!t-margin-bottom-6" aria-label="Important Information">
@@ -98,12 +98,12 @@ info:
     
     ## Related APIs
     The following APIs also give access to the Organisation Data Service:
-    - [ODS Organisation Reference Data (ORD) API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) - a richer version conforming to DCB000090 Standard, soon to be deprecated.
+    - [ODS Organisation Reference Data (ORD) API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) - a version conforming to DCB000090 Standard, soon to be deprecated.
     - [ODS Organisation Reference Data (FHIR - STU3) API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir) - STU3 version contains a minimal organization record, soon to be deprecated.
     
 
     ## API status and roadmap
-    This API is [in Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses).
+    This API is in [Beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses).
     
     To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=ods-api#controls).
     
@@ -159,9 +159,9 @@ info:
     
     | Environments                | Base URLs                                                              |
     | -----------------           | ---------------------------------------------------------------------- |
-    | Sandbox (no auth)  |https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir                    |
-    | Integration (INT)  |https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir                    |
-    | Production                  |https://api.service.nhs.uk/organisation-data-terminology-api/fhir          |
+    | Sandbox                     | https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir                    |
+    | Integration (INT)           | https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir                    |
+    | Production                  | https://api.service.nhs.uk/organisation-data-terminology-api/fhir          |
     
     For example:
     `https://api.service.nhs.uk/organisation-data-terminology-api/fhir/Organization/RJY`
@@ -175,7 +175,7 @@ info:
     
     As part of this process, you need to answer a simple set of questions, detailing information about yourself and your organisation.
     
-    We will then reach out to request information to enable your application before we approve your application.
+    We will then reach out to request information to enable your software application before we approve your request.
 
 
     To understand how our online digital onboarding process works, see [digital onboarding](https://digital.nhs.uk/developer/guides-and-documentation/digital-onboarding). 
@@ -231,7 +231,7 @@ paths:
         
         You can try out the sandbox using the 'Try this API' feature on this page.
         
-        Alternatively, you can try out the sandbox using our Postman collection (placeholder link):
+        Alternatively, you can try out the sandbox using our Postman collection:
         
         [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/26163840/2sA3dvmD94)
         
@@ -453,7 +453,7 @@ paths:
             
             You may combine 'AND' and 'OR' searches.
             
-            To discover whether a role is primary or non-primary, refer to the `ODSOrganisationRelationship` CodeSystem 
+            To discover whether a role is primary or non-primary, refer to the `ODSOrganisationRole` CodeSystem 
           required: false
           schema:
             type: string
@@ -496,7 +496,7 @@ paths:
             
             You may combine 'AND' and 'OR' searches.
             
-            To discover whether a role is primary or non-primary, refer to the `ODSOrganisationRelationship` CodeSystem 
+            To discover whether a role is primary or non-primary, refer to the `ODSOrganisationRole` CodeSystem 
           required: false
           schema:
             type: string
@@ -515,7 +515,7 @@ paths:
         - in: query
           name: _count
           description: |
-            Number of results to return. any search which generates more than 50,000 results will generate an error. we recomend you use a limit 1000 of  and use _offset to page through the data, until you have collected all results 
+            Number of results to return. any search which generates a response larger than 5mb will generate an error. We recomend you use a an appropriate limit and use _offset to page through the data, until you have collected all results 
             
             By default the first 20 records will be returned
           required: false
@@ -1194,14 +1194,15 @@ paths:
           
         you can search using various combinations of:
         
-          * Primary-Organisation - known within the ORD products as the Source Organisation
-          * Participating-Organisation - known within the ORD products as the Target Organisation
+          * `Primary-Organisation` - known within the ORD products as the Source Organisation
+          * `Participating-Organisation` - known within the ORD products as the Target Organisation
           * relationship status 
           
-        It is also possible to return the relevant Organization Resources in these searches using the `_include` parameter
-                You can try out the sandbox using the 'Try this API' feature on this page.
+        It is also possible to return the relevant Organization Resources in these searches using the `_include` parameter.
         
-        Alternatively, you can try out the sandbox using our Postman collection (placeholder link):
+        You can try out the sandbox using the 'Try this API' feature on this page.
+        
+        Alternatively, you can try out the sandbox using our Postman collection:
         
         [![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/26163840/2sA3dvmD94)
         
@@ -1657,7 +1658,7 @@ paths:
           * organisation –Assigning Authority
           * related entities, the current related entity of any supported relationships
           * succession - any predecessors and/or successors and a flag to indicate the successor has also been succeeded
-          * geographic - the appropriate mapping from the postcode dataset including Local Authority, Integrated Care Board or Lower Super Output Area (LSOA) 
+          * geographic - the appropriate mapping from the postcode dataset including Local Authority, Integrated Care Board or 2011 Lower Super Output Area (LSOA11) 
         
       parameters:
         - in: path
@@ -2361,7 +2362,7 @@ paths:
           * related organisations using a Relationship ID such as RE4 (commissioned by), RE6 (operated by), RE8 (is partner to and RE10 (nominated payee for) 
           * presence of successor or predecessor information
           * indicator for onward succession
-          * geographic values such as Local Authority boundary, Integrated Care Board boundary or Lower Super Output Area (LSOA) 
+          * geographic values such as Local Authority boundary, Integrated Care Board boundary or 2011 Lower Super Output Area (LSOA11) 
 
         ### organisation-relationship-instance 
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/organization-relationship-instance 
@@ -2378,13 +2379,13 @@ paths:
         ### practitioner
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner
         
-        Contains the prescribing practitioner and consultants in a single CodeSystem to enable lookup and validation of Practitioner codes. Practitioners are categorised with a type and role. Roles and types can be validated against the practitioner-role CodeSystem.
+        Contains the prescribing practitioner and consultants in a single CodeSystem to enable lookup and validation of practitioner codes. Practitioners are categorised with a type and role. Roles and types can be validated against the practitioner-role CodeSystem.
         
-          Types include `PGP` (General Practitioner), `PNURSE` - Prescribing Nurse and `PDENTCON` Dental Consultants. 
+        Types include `PGP` (General Practitioner), `PNURSE` - Prescribing Nurse and `PDENTCON` Dental Consultants. 
           
-          Roles include `PHOSPCON120` (ear nose and throat), `PGP1` (principal GP), `PNURSE1` (district nurse / health visitor).
+        Roles include `PHOSPCON120` (ear nose and throat), `PGP1` (principal GP), `PNURSE1` (district nurse / health visitor).
         
-        Where practitioners are associated to an organisation, the current/latest values is held in a membership property, these include `ME1` Parent Practice for GPs and `ME4` Parent Trust for a Dental Consultant. More information about the associations can be found in the practitioner-relationship-instance CodeSystem.
+        Where practitioners are associated to an organisation, the current/latest values is held in a membership property, these include `ME1` parent practice for GPs and `ME4` parent trust for a Dental Consultant. More information about the associations can be found in the practitioner-relationship-instance CodeSystem.
         
         This CodeSystem has been designed to enable practitioners with multiple codes, i.e a Prescribing Code and a General Medical Council (GMC) code to be returned or validated.
         
@@ -2413,7 +2414,7 @@ paths:
         
         More information about how this data is compiled can be found in the [NHSPD user guide](https://digital.nhs.uk/binaries/content/assets/website-assets/services/ods/user_guide.pdf).
         
-        the following Geographic boundaries are included:
+        The following Geographic boundaries are included:
         | Attribute name                  | Description                                            |
         |---------------------------------|--------------------------------------------------------|
           | `CA` | cancer alliance |

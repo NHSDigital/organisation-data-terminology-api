@@ -515,7 +515,7 @@ paths:
         - in: query
           name: _count
           description: |
-            Number of results to return. any search which generates a response larger than 5mb will generate an error. We recomend you use a an appropriate limit and use _offset to page through the data, until you have collected all results 
+            Number of results to return. any search which generates a response larger than 5mb will generate an error. We recommend you use a an appropriate limit and use _offset to page through the data, until you have collected all results 
             
             By default the first 20 records will be returned
           required: false

@@ -36,6 +36,16 @@
       </Response>
       <Condition>(request.verb = "OPTIONS") and (request.header.origin != null) and (request.header.Access-Control-Request-Method != null)</Condition>
     </Flow>
+    <Flow name="AddPayloadToJSONCapabilityStatement">
+      <Description/>
+      <Request/>
+      <Response>
+        <Step>
+          <Name>AssignMessage.AddPayloadToJSONCapabilityStatement</Name>
+        </Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/metadata") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </Flow>
     <Flow name="AddPayloadToPing">
       <Description/>
       <Request/>
@@ -108,6 +118,9 @@
   </RouteRule>
   <RouteRule name="NoRouteStatus">
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+  </RouteRule>
+  <RouteRule name="NoRouteJSONCapability">
+    <Condition>(proxy.pathsuffix MatchesPath "/metadata") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
   <RouteRule name="organisation-data-terminology-api-target">
     <TargetEndpoint>organisation-data-terminology-api-target</TargetEndpoint>

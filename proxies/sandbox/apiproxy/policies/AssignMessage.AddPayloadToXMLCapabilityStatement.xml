@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage continueOnError="false" enabled="true" name="AssignMessage.AddPayloadToXMLCapabilityStatement" async="false">
+  <Set>
+    <Payload>&lt;/coming&gt;&lt;/soon&gt;</Payload>
+    <StatusCode>200</StatusCode>
+    <Verb>GET</Verb>
+    <Headers>
+      <Header name="Content-Type">application/xml</Header>
+    </Headers>
+    <Version>1.1</Version>
+  </Set>
+  <AssignTo createNew="false" transport="http" type="request"/>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</AssignMessage>

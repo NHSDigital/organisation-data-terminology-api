@@ -44,7 +44,7 @@
           <Name>AssignMessage.AddPayloadToJSONCapabilityStatement</Name>
         </Step>
       </Response>
-      <Condition>(proxy.pathsuffix MatchesPath "/metadata") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+      <Condition>(proxy.pathsuffix MatchesPath "/fhir/metadata") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </Flow>
     <Flow name="AddPayloadToPing">
       <Description/>
@@ -120,7 +120,7 @@
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
   <RouteRule name="NoRouteJSONCapability">
-    <Condition>(proxy.pathsuffix MatchesPath "/metadata") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    <Condition>(proxy.pathsuffix MatchesPath "/fhir/metadata") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
   <RouteRule name="organisation-data-terminology-api-target">
     <TargetEndpoint>organisation-data-terminology-api-target</TargetEndpoint>

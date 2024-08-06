@@ -159,7 +159,7 @@ These files are required to deploy containers alongside your Apigee proxy during
 
 `ecs-proxies-containers.yml`: The path to a container's Dockerfile is defined here. This path needs to be defined to allow containers to be pushed to our repository during the `azure-build-pipeline`.
 
-`ecs-proxies-deploy.yml` : Here you can define config for your container deployment.  
+`ecs-proxies-deploy.yml` : Here you can define configuration for your container deployment.  
 
 For more information about deploying ECS containers see the [API Producer Zone confluence](https://nhsd-confluence.digital.nhs.uk/display/APM/Developing+ECS+proxies#DevelopingECSproxies-Buildingandpushingdockercontainers ).
 

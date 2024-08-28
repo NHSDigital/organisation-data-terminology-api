@@ -35,4 +35,18 @@
     </LoadBalancer>
         <Path>{targetPath}</Path>
   </HTTPTargetConnection>
+  <FaultRules>
+    <FaultRule name="TooBigBodyJSON">
+      <Step>
+        <Name>AssignMessage.TooBigBodyJSONResponse</Name>
+      </Step>
+      <Condition>(fault.name =| "TooBigBody") and ((request.header.Content-Type Matches "*json") or (request.queryparam._format !Matches "*xml"))</Condition>
+    </FaultRule>
+    <FaultRule name="TooBigBodyXML">
+      <Step>
+        <Name>AssignMessage.TooBigBodyXMLResponse</Name>
+      </Step>
+      <Condition>(fault.name =| "TooBigBody") and ((request.header.Content-Type Matches "*xml") or (request.queryparam._format Matches "*xml"))</Condition>
+    </FaultRule>
+  </FaultRules>
 </TargetEndpoint>

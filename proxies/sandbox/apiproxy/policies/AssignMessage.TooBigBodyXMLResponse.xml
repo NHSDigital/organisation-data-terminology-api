@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.TooBigBodyXMLResponse">
+    <Add>
+        <Headers>
+            <Header name="Content-Type">application/xml</Header>
+        </Headers>
+    </Add>
+    <Set>
+        <StatusCode>422</StatusCode>
+        <Payload>&lt;OperationOutcome xmlns="http://hl7.org/fhir"&gt;&lt;issue&gt;&lt;severity value="error"/&gt;&lt;code value="too-costly"/&gt;&lt;details&gt;&lt;text value="Response exceeds APIM size limit"/&gt;&lt;/details&gt;&lt;diagnostics value="Response exceeds APIM size limit"/&gt;&lt;/issue&gt;&lt;/OperationOutcome&gt;</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

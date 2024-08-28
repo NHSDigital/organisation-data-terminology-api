@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.TooBigBodyJSONResponse">
+    <Set>
+        <StatusCode>422</StatusCode>
+        <Payload>{"resourceType": "OperationOutcome","issue": [{"severity": "error","code": "too-costly","details": {"text": "Response exceeds APIM size limit"},"diagnostics": "Response exceeds APIM size limit"}]}</Payload>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>

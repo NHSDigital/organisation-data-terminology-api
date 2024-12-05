@@ -16,7 +16,7 @@ info:
     
     This [FHIR](https://hl7.org/fhir/R4/organization.html) API contains the majority of ODS Content, including organisations, practitioners and geographic information. It contains all the content found within the [ODS ORD API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord) and the [ODS STU3 API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir).
     
-    ODS holds information for many different types of organisation related to health and social care – mostly in England but also other countries depending on the type of organisation. For the full scope of data coverage of the ODS APIs, see [Organisation Data Service - data coverage](https://digital.nhs.uk/services/organisation-data-service/ods-data-coverage). 
+    ODS holds information for many different types of organisation related to health and social care, mostly in England but also other countries depending on the type of organisation. For the full scope of data coverage of the ODS APIs, see [Organisation Data Service - data coverage](https://digital.nhs.uk/services/organisation-data-service/ods-data-coverage). 
 
     Every organisation in ODS has a unique identifier called an ODS code. 
 

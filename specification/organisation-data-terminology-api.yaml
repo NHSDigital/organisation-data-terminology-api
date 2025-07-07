@@ -65,7 +65,8 @@ info:
     - practitioner - includes details about related organisation (where a practitioner is based/works) and type of practitioner
     - postcode - contains various geographic values/boundaries for a postcode including which Lower Super Output Area, Parliamentary Constituency, Local Authority and Integrated Care Board boundary a postcode falls within
     - organization-relationship-instance - contains historic and current relationships
-    - organization-role-instance - contains historic and current role instances 
+    - organization-role-instance - contains historic and current role instances
+    - succession – succession (merger and acquisition) details for statutory organisations
     - practitioner-role - contains the role a practitioner performs (currently limited to prescriber types/roles and consultants)
     - practitioner-relationship-instance - contains the associations between prescribers (GPs) and GP Practices only 
     - ODSOrganisationRole - reference data for Primary and Non Primary Roles (Role ID, Role Name, and Primary/Non Primary indicator)
@@ -267,7 +268,7 @@ paths:
               value: 'https://fhir.nhs.uk/Id/ods-organization-code|G81086'
         - in: query
           name: lastChangeDate
-          description: The date that the organisation record was last modified by ODS. Supports greater than, less and equal to. Can be compounded.
+          description: The date that the organisation record was last modified by ODS. Supports greater than, less and equal to. Can be compounded. For further information about the application of lastChangeDate and how it should be queried, please refer to the [ODS Reference Data Catalogue page for LastChangeDate](https://www.odsdatasearchandexport.nhs.uk/referenceDataCatalogue/LastChangeDate_636505291.html).
           required: false
           schema:
             type: string
@@ -2372,7 +2373,11 @@ paths:
         https://digital.nhs.uk/services/organisation-data-service/CodeSystem/organization-role-instance
         
         - Contains role history
+
+        ### Succession
+        https://digital.nhs.uk/services/organisation-data-service/CodeSystem/succession
         
+        - Contains succession (merger and acquisition) data for statutory organisations
         
         ## Practitioner data
         ### practitioner

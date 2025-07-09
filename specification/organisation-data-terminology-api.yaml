@@ -66,13 +66,13 @@ info:
     - postcode - contains various geographic values/boundaries for a postcode including which Lower Super Output Area, Parliamentary Constituency, Local Authority and Integrated Care Board boundary a postcode falls within
     - organization-relationship-instance - contains historic and current relationships
     - organization-role-instance - contains historic and current role instances
-    - succession – succession (merger and acquisition) details for statutory organisations
+    - succession - succession (merger and acquisition) details for statutory organisations
     - practitioner-role - contains the role a practitioner performs (currently limited to prescriber types/roles and consultants)
     - practitioner-relationship-instance - contains the associations between prescribers (GPs) and GP Practices only 
     - ODSOrganisationRole - reference data for Primary and Non Primary Roles (Role ID, Role Name, and Primary/Non Primary indicator)
     - ODSRelationship - reference data for relationships (Relationship Type ID and Relationship Name)  
     - ODSRecordClass - reference data for record classes for example organisation or site 
-    - ODSRecordUseType - reference data for the type of use – Full for current records, refOnly for minimal records included for referential integrity
+    - ODSRecordUseType - reference data for the type of use - Full for current records, refOnly for minimal records included for referential integrity
     - geography-name - reference data for ONS identifiers used within the postcode CodeSystem 
 
 

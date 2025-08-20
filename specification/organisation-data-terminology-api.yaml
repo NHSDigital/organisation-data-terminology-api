@@ -110,6 +110,13 @@ info:
     This API is a platinum service, meaning it is operational and supported 24 hours a day, 365 days a year.
         
     For more details, see [service levels](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#service-levels).
+
+    ## Rate limits
+    The Organisation Data Terminology FHIR R4 API has been configured with a custom rate limit based on expected traffic patterns, use case and consumer profiles, and technical constraints.  To ensure a good level of service users should aim to keep usage below 5,000 requests per 5 minutes. 
+    
+    The API rate limit is greater than the default, baseline limit for APIM hosted APIs (5 calls per second).
+    
+    If a user or their application exceeds this rate limit, an HTTP status of 429 (Too Many Requests) will be received. For strategies on handling error codes, refer to [error handling guidance](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#error-handling).
     
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/our-api-technologies#basic-rest).
@@ -1174,11 +1181,11 @@ paths:
                     </issue>
                 </OperationOutcome>
                     
-  /Organizationaffiliation:
+  /OrganizationAffiliation:
     get:
       summary: Search for a relationship
       
-      operationId: get-organizationaffiliation-resources
+      operationId: get-organizationAffiliation-resources
       description: |
         ## Overview
         Use this endpoint to search for relationship records. Most commonly you would use this endpoint to get all the relationships for a given organisation, based on its ODS code. 
@@ -2344,8 +2351,11 @@ paths:
         
         The smaller reference based CodeSystems  can be returned in full using `_summary=false` which will return all versions stored on the server in full.
         
-          For example:
-        `/CodeSystem?system=https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-role&_summary=false`
+        For example:
+        `/CodeSystem?system=https://digital.nhs.uk/services/organisation-data-service/CodeSystem/practitioner-role&_summary=false` 
+
+        For example:
+        `/CodeSystem?system=https://digital.nhs.uk/services/organisation-data-service/CodeSystem/succession`
         
         ## Code Validation
         Using the $validate operation you can check whether a code is present within any given ValueSet and you can also provide additional properties to validate their values.

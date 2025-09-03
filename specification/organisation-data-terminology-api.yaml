@@ -105,7 +105,11 @@ info:
 
     ## API status and roadmap
     This API is [in production](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#statuses).
-        
+    
+    To provide feedback or suggest developments for this API, please use the [Developer Community](https://developer.community.nhs.uk/c/ods/21).
+    
+    Planned data model and product developments can be viewed via the [Organisation Data Service roadmap](https://digital.nhs.uk/services/organisation-data-service/ods-roadmap).
+    
     ## Service level
     This API is a platinum service, meaning it is operational and supported 24 hours a day, 365 days a year.
         

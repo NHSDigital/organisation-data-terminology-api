@@ -17,7 +17,7 @@ package-mode = false
 python = "^3.8"
 pytest-nhsd-apim = "^3.3.2"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 flake8 = "^3.7.9"
 black = "^24.3"
 pip-licenses = "^2.0.1"

@@ -38,9 +38,11 @@ extends:
           - template: ./templates/run-tests.yml
             parameters:
               full: false
+              python_version: ${{ variables.python_version }}
       - environment: internal-dev-sandbox
         proxy_path: sandbox
         post_deploy:
           - template: ./templates/run-tests.yml
             parameters:
               full: true
+              python_version: ${{ variables.python_version }}

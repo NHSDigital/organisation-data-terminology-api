@@ -8,8 +8,15 @@ parameters:
   - name: smoketest_command
     type: string
     default: 'make smoketest'
+  - name: python_version
+    default: ""
 
 steps:
+  - task: UsePythonVersion@0
+    displayName: "Use Python ${{ parameters.python_version }}"
+    inputs:
+      versionSpec: ${{ parameters.python_version }}
+
   - bash: |
       make install-python
     workingDirectory: $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)

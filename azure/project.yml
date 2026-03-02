@@ -6,3 +6,5 @@ variables:
     value: odta
   - name: service_base_path
     value: organisation-data-terminology-api
+  - name: python_version
+    value: "3.8"

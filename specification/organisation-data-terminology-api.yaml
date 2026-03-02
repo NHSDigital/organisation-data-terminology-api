@@ -1820,7 +1820,7 @@ paths:
         CodeSystem, when searching the CodeSystem resource with an ODS Code, in
         addition to the above, the following will also be returned: 
 
-          * organisation –Assigning Authority
+          * organisation - Assigning Authority
           * related entities, the current related entity of any supported relationships
           * succession - any predecessors and/or successors and a flag to indicate the successor has also been succeeded
           * geographic - the appropriate mapping from the postcode dataset including Local Authority, Integrated Care Board or 2011 Lower Super Output Area (LSOA11) 

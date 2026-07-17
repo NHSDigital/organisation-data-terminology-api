@@ -20,9 +20,7 @@ info:
     majority of ODS Content, including organisations, practitioners and
     geographic information. It contains all the content found within the [ODS
     ORD
-    API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord)
-    and the [ODS STU3
-    API](https://digital.nhs.uk/developer/api-catalogue/organisation-data-service-fhir).
+    API](http://digital.nhs.uk/developer/api-catalogue/organisation-data-service-ord).
 
 
     ODS holds information for many different types of organisation related to
@@ -342,22 +340,15 @@ info:
     ## Environments and testing
 
 
-    | Environments                | Base
-    URLs                                                              |
+    | Environments                | Base URLs                                                             | API Key Required | Onboarding Required |
 
-    | -----------------           |
-    ---------------------------------------------------------------------- |
+    | -----------------           | --------------------------------------------------------------------- | ------------ | --------------- |
 
-    | Sandbox                     |
-    https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir                   
-    |
+    | Sandbox                     | https://sandbox.api.service.nhs.uk/organisation-data-terminology-api/fhir | No           | No              |
 
-    | Integration (INT)           |
-    https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir                   
-    |
+    | Integration (INT)           | https://int.api.service.nhs.uk/organisation-data-terminology-api/fhir | Yes          | No             |
 
-    | Production                  |
-    https://api.service.nhs.uk/organisation-data-terminology-api/fhir          |
+    | Production                  | https://api.service.nhs.uk/organisation-data-terminology-api/fhir    | Yes          | Yes             |
 
 
     For example:
@@ -373,6 +364,9 @@ info:
 
     You can use the integration environment to perform your integration testing.
 
+
+    To get an API key for the INT environment, create a product against the Integration environment within the [Developer Portal](https://onboarding.prod.api.platform.nhs.uk/). You can do this in the ‘Environment Access’ tab. Once you have created the product, your API key will be available from the same location – select the product name, and then ‘Edit’ against ‘Active API Keys’.
+    API keys for the INT environment are automatically enabled. To enable an API key for the Production environment, please follow the [onboarding](https://digital.nhs.uk/developer/api-catalogue/organisation-data-terminology#overview--onboarding) process.
 
     ## Onboarding
 

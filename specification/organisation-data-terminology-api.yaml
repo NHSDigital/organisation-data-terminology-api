@@ -366,7 +366,7 @@ info:
 
 
     To get an API key for the INT environment, create a product against the Integration environment within the [Developer Portal](https://onboarding.prod.api.platform.nhs.uk/). You can do this in the ‘Environment Access’ tab. Once you have created the product, your API key will be available from the same location – select the product name, and then ‘Edit’ against ‘Active API Keys’.
-    API keys for the INT environment are automatically enabled. To enable an API key for the Production process, please follow the [onboarding](https://digital.nhs.uk/developer/api-catalogue/organisation-data-terminology#overview--onboarding) process.
+    API keys for the INT environment are automatically enabled. To enable an API key for the Production environment, please follow the [onboarding](https://digital.nhs.uk/developer/api-catalogue/organisation-data-terminology#overview--onboarding) process.
 
     ## Onboarding
 
